@@ -63,7 +63,7 @@
     <a href="#" onclick="showPage('tipos')">Tipos de datos</a>
     <a href="#" onclick="showPage('constructores')">Clases y constructores</a>
     <a href="#" onclick="showPage('metodos')">Métodos</a>
-
+ 
     <div class="nav-section">POO</div>
     <a href="#" onclick="showPage('visibilidad')">Visibilidad</a>
     <a href="#" onclick="showPage('herencia')">Herencia y super()</a>
@@ -72,11 +72,11 @@
     <a href="#" onclick="showPage('polimorfismo')">Polimorfismo</a>
     <a href="#" onclick="showPage('genericos')">Genéricos &lt;T&gt;</a>
     <a href="#" onclick="showPage('excepciones')">Excepciones</a>
-
+ 
     <div class="nav-section">Colecciones</div>
     <a href="#" onclick="showPage('arraylist')">ArrayList&lt;T&gt;</a>
     <a href="#" onclick="showPage('arrays')">Arrays (estáticos)</a>
-
+ 
     <div class="nav-section">Utilidades</div>
     <a href="#" onclick="showPage('string')">String</a>
     <a href="#" onclick="showPage('math')">Math</a>
@@ -84,14 +84,14 @@
     <a href="#" onclick="showPage('localdate')">LocalDate / Period</a>
     <a href="#" onclick="showPage('regex')">Regex</a>
     <a href="#" onclick="showPage('scanner')">Scanner</a>
-
+ 
     <div class="nav-section">Errores frecuentes</div>
     <a href="#" onclick="showPage('errores')">Errores más comunes</a>
   </nav>
 </div>
-
+ 
 <div id="main">
-
+ 
 <!-- ══ SINTAXIS Y ESTRUCTURA ══ -->
 <div id="page-sintaxis" class="page active">
   <div class="class-header"><div class="package-name">Fundamentos</div>Sintaxis y estructura de un programa Java</div>
@@ -115,10 +115,10 @@
         <tr>
           <td><span class="method-sig">Comentarios</span></td>
           <td class="method-desc"><span class="example">// Comentario de una línea
-
+ 
 /* Comentario
    de varias líneas */
-
+ 
 /**
  * Javadoc — documentación oficial
  * @param nombre descripción del parámetro
@@ -146,7 +146,7 @@ System.err.println("Error"); // salida de error estándar</span>
           <td><span class="method-sig">Precedencia en concatenación</span></td>
           <td class="method-desc"><span class="example">// ❌ problema — Java concatena antes de restar
 System.out.println("Resultado: " + 10 - 5);  // error
-
+ 
 // ✅ solución — paréntesis fuerzan la operación primero
 System.out.println("Resultado: " + (10 - 5));  // "Resultado: 5"</span></td>
         </tr>
@@ -158,7 +158,7 @@ System.out.println("Resultado: " + (10 - 5));  // "Resultado: 5"</span></td>
  * @author Elena González
  */
 public class CuentaBancaria {
-
+ 
     /**
      * Retira una cantidad del saldo de la cuenta.
      * @param cantidad el importe a retirar (debe ser positivo)
@@ -166,7 +166,7 @@ public class CuentaBancaria {
     public void retirarDinero(double cantidad) {
         if (cantidad > 0) saldo -= cantidad;
     }
-
+ 
     /**
      * Devuelve el saldo actual de la cuenta.
      * @return el saldo disponible
@@ -182,7 +182,7 @@ public class CuentaBancaria {
   </div>
   <div class="page-footer">Fundamentos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ TIPOS DE DATOS ══ -->
 <div id="page-tipos" class="page">
   <div class="class-header"><div class="package-name">Fundamentos</div>Tipos de datos</div>
@@ -231,7 +231,7 @@ String s2 = "" + 25;  // concatenación fuerza conversión</span></td>
   </div>
   <div class="page-footer">Tipos de datos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ CLASES Y CONSTRUCTORES ══ -->
 <div id="page-constructores" class="page">
   <div class="class-header"><div class="package-name">Fundamentos POO</div>Clases y constructores</div>
@@ -284,7 +284,7 @@ public Jugador(String nombre) {
           <td><span class="method-sig">Getters y setters</span></td>
           <td class="method-desc"><span class="example">public String getNombre() { return nombre; }
 public void setNombre(String nombre) { this.nombre = nombre; }
-
+ 
 // boolean → getter usa "is" en lugar de "get"
 public boolean isPulgas() { return pulgas; }
 public void setPulgas(boolean pulgas) { this.pulgas = pulgas; }</span></td>
@@ -311,7 +311,7 @@ p = new Persona("Ana", 25);</span></td>
   </div>
   <div class="page-footer">Clases y constructores · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ MÉTODOS ══ -->
 <div id="page-metodos" class="page">
   <div class="class-header"><div class="package-name">Fundamentos POO</div>Métodos</div>
@@ -359,7 +359,7 @@ static void rellenar(int[] v, int min, int max) { ... }</span></td>
           <td><span class="method-sig">Paso de parámetros</span></td>
           <td class="method-desc"><span class="example">// Primitivos → se pasa una COPIA (el original no cambia)
 void doblar(int n) { n = n * 2; }  // no afecta al original
-
+ 
 // Objetos y arrays → se pasa la REFERENCIA (el original SÍ cambia)
 void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
         </tr>
@@ -368,7 +368,7 @@ void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
   </div>
   <div class="page-footer">Métodos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ VISIBILIDAD ══ -->
 <div id="page-visibilidad" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Visibilidad (modificadores de acceso)</div>
@@ -402,7 +402,7 @@ void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
   </div>
   <div class="page-footer">Visibilidad · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ HERENCIA ══ -->
 <div id="page-herencia" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Herencia y super()</div>
@@ -442,7 +442,7 @@ public void atacar() {
           <td><span class="method-sig">@Override</span></td>
           <td class="method-desc"><span class="example">// Con super → añades comportamiento encima del padre
 // Sin super → reemplazas completamente
-
+ 
 // El compilador verifica que el método exista en el padre
 // ⚠ Métodos: minúscula → atacar(), no Atacar()</span></td>
         </tr>
@@ -450,7 +450,7 @@ public void atacar() {
           <td><span class="method-sig">Acceder a atributos privados del padre</span></td>
           <td class="method-desc"><span class="example">// ❌ no puedes acceder directamente si son private
 this.nombre  // error si nombre es private en el padre
-
+ 
 // ✅ usa el getter del padre
 getNombre()  // correcto — el getter es public y lo hereda</span></td>
         </tr>
@@ -492,7 +492,7 @@ class Movil extends Dispositivo {
   </div>
   <div class="page-footer">Herencia · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ CLASES ABSTRACTAS ══ -->
 <div id="page-abstractas" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Clases abstractas</div>
@@ -517,7 +517,7 @@ class Movil extends Dispositivo {
         <tr>
           <td><span class="method-sig">Método abstracto</span></td>
           <td class="method-desc"><span class="example">public abstract void volar();  // sin llaves, sin cuerpo
-
+ 
 // Obliga a TODAS las subclases concretas a implementarlo
 // Si una subclase no lo implementa → también debe ser abstract</span></td>
         </tr>
@@ -551,7 +551,7 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
   </div>
   <div class="page-footer">Clases abstractas · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ INTERFACES ══ -->
 <div id="page-interfaces" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Interfaces</div>
@@ -566,42 +566,80 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
       <tbody>
         <tr>
           <td><span class="method-sig">Declarar interfaz</span></td>
-          <td class="method-desc"><span class="example">public interface Descuento {
-    double calcularPrecioFinal(double porcentaje);  // sin cuerpo
+          <td class="method-desc"><span class="example">public interface ColaCanciones {
+    void añadirACola(String cancion);  // sin cuerpo, sin public (es implícito)
+    String obtenerSiguiente();         // devuelve String
+    void mostrarPendientes();
+    int contarCanciones();             // devuelve int
 }
-// Los métodos de una interfaz son implícitamente public abstract</span></td>
+// Los métodos son implícitamente public abstract
+// No tienen cuerpo — solo la firma</span></td>
         </tr>
         <tr>
           <td><span class="method-sig">Implementar interfaz</span></td>
-          <td class="method-desc"><span class="example">public class Ropa implements Descuento {
+          <td class="method-desc"><span class="example">public class ReproductorMusical implements ColaCanciones {
+    private ArrayList&lt;String&gt; canciones = new ArrayList&lt;&gt;();
+ 
     @Override
-    public double calcularPrecioFinal(double porcentaje) {
-        return precio * (1 - porcentaje / 100);
+    public void añadirACola(String cancion) {
+        canciones.add(cancion);
+    }
+    @Override
+    public String obtenerSiguiente() {
+        if (canciones.isEmpty()) {
+            System.out.println("No hay canciones en la cola.");
+            return null;
+        }
+        return canciones.remove(0);  // FIFO — elimina y devuelve el primero
+    }
+    @Override
+    public void mostrarPendientes() {
+        for (String c : canciones) System.out.println("- " + c);
+    }
+    @Override
+    public int contarCanciones() {
+        return canciones.size();
     }
 }
-// Si no implementas todos los métodos → error de compilación</span></td>
+// Si no implementas TODOS los métodos de la interfaz → error de compilación</span></td>
         </tr>
         <tr>
           <td><span class="method-sig">Herencia + interfaz</span></td>
           <td class="method-desc"><span class="example">public class Ropa extends Producto implements Descuento {
-    // hereda de Producto E implementa Descuento
+    // hereda de Producto Y implementa Descuento
+    // una clase puede implementar varias interfaces
 }</span></td>
         </tr>
         <tr>
-          <td><span class="method-sig">Herencia vs Interfaz vs Genérico</span></td>
-          <td class="method-desc"><span class="example">// Herencia → clases relacionadas comparten código
-// Interfaz → clases NO relacionadas comparten comportamiento
-// Genérico → misma estructura para cualquier tipo de dato
-
-// Ejemplo: Ropa y Electronica no son la misma "cosa"
-// pero ambas pueden tener descuento → interfaz Descuento</span></td>
+          <td><span class="method-sig">Cuándo usar interfaz vs abstracta</span></td>
+          <td class="method-desc"><span class="example">// Clase abstracta → clases RELACIONADAS que comparten atributos y código
+//   Mascota → Perro, Gato, Loro comparten nombre, edad, fechaNacimiento...
+ 
+// Interfaz → clases NO relacionadas que comparten un COMPORTAMIENTO
+//   Ropa y Electronica no tienen nada en común estructuralmente
+//   pero ambas pueden aplicar descuento → interface Descuento
+ 
+// Pista en el enunciado:
+// "todas comparten atributos/código..." → abstracta
+// "algunas clases pueden hacer X..." → interfaz</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Cuándo usar genérico vs interfaz</span></td>
+          <td class="method-desc"><span class="example">// Genérico → misma ESTRUCTURA para cualquier tipo
+//   Caja&lt;T&gt;, Pila&lt;T&gt;, Repositorio&lt;T&gt;
+//   Pista en enunciado: "sin crear una clase distinta para cada tipo"
+ 
+// Interfaz → mismo COMPORTAMIENTO para clases distintas
+//   Descuento, ColaCanciones
+//   Pista en enunciado: "algunas clases pueden hacer X"</span></td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="page-footer">Interfaces · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
+ 
 <!-- ══ POLIMORFISMO ══ -->
 <div id="page-polimorfismo" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Polimorfismo</div>
@@ -642,7 +680,7 @@ ArrayList&lt;Mascota&gt; animales = new ArrayList&lt;&gt;();
 animales.add(new Perro("Toby", 3));   // ✅
 animales.add(new Gato("Misu", 2));    // ✅
 animales.add(new Loro("Piolín", 4));  // ✅
-
+ 
 for (Mascota m : animales) {
     m.muestra();  // llama al muestra() de cada tipo real → polimorfismo
 }</span></td>
@@ -652,7 +690,7 @@ for (Mascota m : animales) {
   </div>
   <div class="page-footer">Polimorfismo · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ GENÉRICOS ══ -->
 <div id="page-genericos" class="page">
   <div class="class-header"><div class="package-name">POO — RA6</div>Genéricos &lt;T&gt;</div>
@@ -712,12 +750,36 @@ Repositorio&lt;Documento&gt; repo = new Repositorio&lt;&gt;();</span></td>
 // push = apilar, pop = desapilar (elimina), peek = ver tope (no elimina)
 // Ejemplo real: historial navegador, deshacer (Ctrl+Z), calculadora</span></td>
         </tr>
+        <tr>
+          <td><span class="method-sig">Cola — FIFO</span></td>
+          <td class="method-desc"><span class="example">// FIFO = First In, First Out — el primero que entra es el primero que sale
+// Ejemplo real: cola de música, impresora, supermercado
+ 
+// Añadir al final (igual que Pila):
+elementos.add(elemento);
+ 
+// Obtener y eliminar el PRIMERO (distinto de Pila):
+elementos.remove(0);  // elimina la posición 0 y la devuelve
+ 
+// Ver el primero sin eliminar:
+elementos.get(0);</span>
+          <div class="returns">
+            Diferencia clave con Pila:<br>
+            LIFO → <code>elementos.get(size()-1)</code> — coge el último<br>
+            FIFO → <code>elementos.get(0)</code> — coge el primero
+          </div></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">LIFO vs FIFO</span></td>
+          <td class="method-desc"><span class="example">// LIFO (Pila): entran 1,2,3 → salen 3,2,1
+// FIFO (Cola): entran 1,2,3 → salen 1,2,3</span></td>
+        </tr>
       </tbody>
     </table>
   </div>
   <div class="page-footer">Genéricos · RA6 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ EXCEPCIONES ══ -->
 <div id="page-excepciones" class="page">
   <div class="class-header"><div class="package-name">java.lang — RA3</div>Manejo de Excepciones</div>
@@ -848,7 +910,7 @@ if (!opcion.matches(regex)) {
         <tr>
           <td><span class="method-sig">Validar IP con regex + rango</span></td>
           <td class="method-desc"><span class="example">String regex = "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}";
-
+ 
 // ⚠ ORDEN IMPORTANTE: regex primero, split después
 if (!opcion.matches(regex)) {
     throw new IPInvalidaException("Formato incorrecto");
@@ -904,7 +966,7 @@ while (!opcion.equals("salir")) {
   </div>
   <div class="page-footer">Excepciones · RA3 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ ARRAYLIST ══ -->
 <div id="page-arraylist" class="page">
   <div class="class-header"><div class="package-name">java.util</div>ArrayList&lt;E&gt;</div>
@@ -996,7 +1058,7 @@ if (!encontrado) System.out.println("No encontrado");</span></td>
   </div>
   <div class="page-footer">java.util.ArrayList · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ ARRAYS ══ -->
 <div id="page-arrays" class="page">
   <div class="class-header"><div class="package-name">java.util</div>Arrays (estáticos)</div>
@@ -1040,7 +1102,7 @@ v[v.length - 1] = nuevoValor;</span></td>
   </div>
   <div class="page-footer">Arrays · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ STRING ══ -->
 <div id="page-string" class="page">
   <div class="class-header"><div class="package-name">java.lang (no necesita import)</div>String</div>
@@ -1070,7 +1132,7 @@ v[v.length - 1] = nuevoValor;</span></td>
   </div>
   <div class="page-footer">java.lang.String · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ MATH ══ -->
 <div id="page-math" class="page">
   <div class="class-header"><div class="package-name">java.lang (no necesita import)</div>Math</div>
@@ -1092,7 +1154,7 @@ int n = (int)(Math.random() * (max - min + 1)) + min;</span></td></tr>
   </div>
   <div class="page-footer">java.lang.Math · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ RANDOM ══ -->
 <div id="page-random" class="page">
   <div class="class-header"><div class="package-name">java.util</div>Random</div>
@@ -1112,7 +1174,7 @@ int n = rnd.nextInt(max - min + 1) + min;</span></td></tr>
   </div>
   <div class="page-footer">java.util.Random · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ LOCALDATE ══ -->
 <div id="page-localdate" class="page">
   <div class="class-header"><div class="package-name">java.time</div>LocalDate · Period · DateTimeFormatter</div>
@@ -1141,7 +1203,7 @@ int edad = Period.between(
   </div>
   <div class="page-footer">java.time · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ REGEX ══ -->
 <div id="page-regex" class="page">
   <div class="class-header"><div class="package-name">java.util.regex</div>Expresiones Regulares — Pattern · Matcher</div>
@@ -1192,7 +1254,7 @@ while (m.find()) {
   </div>
   <div class="page-footer">java.util.regex · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ SCANNER ══ -->
 <div id="page-scanner" class="page">
   <div class="class-header"><div class="package-name">java.util</div>Scanner</div>
@@ -1215,7 +1277,7 @@ while (m.find()) {
   </div>
   <div class="page-footer">java.util.Scanner · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 <!-- ══ ERRORES FRECUENTES ══ -->
 <div id="page-errores" class="page">
   <div class="class-header"><div class="package-name">Referencia rápida</div>Errores más comunes en examen</div>
@@ -1278,10 +1340,10 @@ System.out.println("Val: " + (getBateria() - 10));  // ✅</span></td></tr>
   </div>
   <div class="page-footer">Errores frecuentes · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
-
+ 
 </div><!-- #main -->
 </div><!-- #wrapper -->
-
+ 
 <script>
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
