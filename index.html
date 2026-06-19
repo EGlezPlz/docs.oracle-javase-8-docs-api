@@ -63,7 +63,7 @@
     <a href="#" onclick="showPage('tipos')">Tipos de datos</a>
     <a href="#" onclick="showPage('constructores')">Clases y constructores</a>
     <a href="#" onclick="showPage('metodos')">Métodos</a>
- 
+
     <div class="nav-section">POO</div>
     <a href="#" onclick="showPage('visibilidad')">Visibilidad</a>
     <a href="#" onclick="showPage('herencia')">Herencia y super()</a>
@@ -72,11 +72,11 @@
     <a href="#" onclick="showPage('polimorfismo')">Polimorfismo</a>
     <a href="#" onclick="showPage('genericos')">Genéricos &lt;T&gt;</a>
     <a href="#" onclick="showPage('excepciones')">Excepciones</a>
- 
+
     <div class="nav-section">Colecciones</div>
     <a href="#" onclick="showPage('arraylist')">ArrayList&lt;T&gt;</a>
     <a href="#" onclick="showPage('arrays')">Arrays (estáticos)</a>
- 
+
     <div class="nav-section">Utilidades</div>
     <a href="#" onclick="showPage('string')">String</a>
     <a href="#" onclick="showPage('math')">Math</a>
@@ -84,14 +84,14 @@
     <a href="#" onclick="showPage('localdate')">LocalDate / Period</a>
     <a href="#" onclick="showPage('regex')">Regex</a>
     <a href="#" onclick="showPage('scanner')">Scanner</a>
- 
+
     <div class="nav-section">Errores frecuentes</div>
     <a href="#" onclick="showPage('errores')">Errores más comunes</a>
   </nav>
 </div>
- 
+
 <div id="main">
- 
+
 <!-- ══ SINTAXIS Y ESTRUCTURA ══ -->
 <div id="page-sintaxis" class="page active">
   <div class="class-header"><div class="package-name">Fundamentos</div>Sintaxis y estructura de un programa Java</div>
@@ -115,10 +115,10 @@
         <tr>
           <td><span class="method-sig">Comentarios</span></td>
           <td class="method-desc"><span class="example">// Comentario de una línea
- 
+
 /* Comentario
    de varias líneas */
- 
+
 /**
  * Javadoc — documentación oficial
  * @param nombre descripción del parámetro
@@ -146,7 +146,7 @@ System.err.println("Error"); // salida de error estándar</span>
           <td><span class="method-sig">Precedencia en concatenación</span></td>
           <td class="method-desc"><span class="example">// ❌ problema — Java concatena antes de restar
 System.out.println("Resultado: " + 10 - 5);  // error
- 
+
 // ✅ solución — paréntesis fuerzan la operación primero
 System.out.println("Resultado: " + (10 - 5));  // "Resultado: 5"</span></td>
         </tr>
@@ -158,7 +158,7 @@ System.out.println("Resultado: " + (10 - 5));  // "Resultado: 5"</span></td>
  * @author Elena González
  */
 public class CuentaBancaria {
- 
+
     /**
      * Retira una cantidad del saldo de la cuenta.
      * @param cantidad el importe a retirar (debe ser positivo)
@@ -166,7 +166,7 @@ public class CuentaBancaria {
     public void retirarDinero(double cantidad) {
         if (cantidad > 0) saldo -= cantidad;
     }
- 
+
     /**
      * Devuelve el saldo actual de la cuenta.
      * @return el saldo disponible
@@ -182,7 +182,7 @@ public class CuentaBancaria {
   </div>
   <div class="page-footer">Fundamentos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ TIPOS DE DATOS ══ -->
 <div id="page-tipos" class="page">
   <div class="class-header"><div class="package-name">Fundamentos</div>Tipos de datos</div>
@@ -231,7 +231,7 @@ String s2 = "" + 25;  // concatenación fuerza conversión</span></td>
   </div>
   <div class="page-footer">Tipos de datos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ CLASES Y CONSTRUCTORES ══ -->
 <div id="page-constructores" class="page">
   <div class="class-header"><div class="package-name">Fundamentos POO</div>Clases y constructores</div>
@@ -284,7 +284,7 @@ public Jugador(String nombre) {
           <td><span class="method-sig">Getters y setters</span></td>
           <td class="method-desc"><span class="example">public String getNombre() { return nombre; }
 public void setNombre(String nombre) { this.nombre = nombre; }
- 
+
 // boolean → getter usa "is" en lugar de "get"
 public boolean isPulgas() { return pulgas; }
 public void setPulgas(boolean pulgas) { this.pulgas = pulgas; }</span></td>
@@ -311,7 +311,7 @@ p = new Persona("Ana", 25);</span></td>
   </div>
   <div class="page-footer">Clases y constructores · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ MÉTODOS ══ -->
 <div id="page-metodos" class="page">
   <div class="class-header"><div class="package-name">Fundamentos POO</div>Métodos</div>
@@ -359,7 +359,7 @@ static void rellenar(int[] v, int min, int max) { ... }</span></td>
           <td><span class="method-sig">Paso de parámetros</span></td>
           <td class="method-desc"><span class="example">// Primitivos → se pasa una COPIA (el original no cambia)
 void doblar(int n) { n = n * 2; }  // no afecta al original
- 
+
 // Objetos y arrays → se pasa la REFERENCIA (el original SÍ cambia)
 void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
         </tr>
@@ -368,7 +368,7 @@ void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
   </div>
   <div class="page-footer">Métodos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ VISIBILIDAD ══ -->
 <div id="page-visibilidad" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Visibilidad (modificadores de acceso)</div>
@@ -402,7 +402,7 @@ void rellenar(int[] v) { v[0] = 99; }  // modifica el array original</span></td>
   </div>
   <div class="page-footer">Visibilidad · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ HERENCIA ══ -->
 <div id="page-herencia" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Herencia y super()</div>
@@ -442,7 +442,7 @@ public void atacar() {
           <td><span class="method-sig">@Override</span></td>
           <td class="method-desc"><span class="example">// Con super → añades comportamiento encima del padre
 // Sin super → reemplazas completamente
- 
+
 // El compilador verifica que el método exista en el padre
 // ⚠ Métodos: minúscula → atacar(), no Atacar()</span></td>
         </tr>
@@ -450,7 +450,7 @@ public void atacar() {
           <td><span class="method-sig">Acceder a atributos privados del padre</span></td>
           <td class="method-desc"><span class="example">// ❌ no puedes acceder directamente si son private
 this.nombre  // error si nombre es private en el padre
- 
+
 // ✅ usa el getter del padre
 getNombre()  // correcto — el getter es public y lo hereda</span></td>
         </tr>
@@ -492,7 +492,7 @@ class Movil extends Dispositivo {
   </div>
   <div class="page-footer">Herencia · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ CLASES ABSTRACTAS ══ -->
 <div id="page-abstractas" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Clases abstractas</div>
@@ -517,7 +517,7 @@ class Movil extends Dispositivo {
         <tr>
           <td><span class="method-sig">Método abstracto</span></td>
           <td class="method-desc"><span class="example">public abstract void volar();  // sin llaves, sin cuerpo
- 
+
 // Obliga a TODAS las subclases concretas a implementarlo
 // Si una subclase no lo implementa → también debe ser abstract</span></td>
         </tr>
@@ -549,9 +549,52 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ ¿Método abstracto o método con cuerpo compartido?</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Caso</th><th>Decisión · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Si todas las subclases harían EXACTAMENTE lo mismo</span></td>
+          <td class="method-desc">
+            No lo declares abstracto — ponlo con cuerpo en la clase abstracta y que se herede sin repetir código.
+            <span class="example">// ❌ Innecesario — Profesor y Alumno harían lo mismo:
+public abstract String rol();
+// en Profesor: return getClass().getSimpleName();
+// en Alumno:   return getClass().getSimpleName();  ← código duplicado
+
+// ✅ Mejor — un solo sitio, se hereda:
+public String rol() {  // sin abstract, con cuerpo
+    return getClass().getSimpleName();
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Si el enunciado EXIGE explícitamente que sea abstracto</span></td>
+          <td class="method-desc">
+            Síguelo aunque tengas una alternativa más simple — es una instrucción de diseño, no una sugerencia. El examen evalúa que sepas usar la herramienta pedida.
+            <span class="example">// Enunciado: "un método abstracto rol() que cada subclase implementará"
+// → hay que usar abstract aunque el valor final sea simple:
+public abstract String rol();  // en Usuario
+
+// Profesor:
+@Override
+public String rol() { return "Profesor"; }
+
+// Alumno:
+@Override
+public String rol() { return "Alumno"; }
+// Aquí SÍ tiene sentido abstracto: cada subclase decide su propio valor,
+// no se deduce automáticamente del nombre de la clase</span>
+            <div class="returns">Diferencia clave: <code>getSimpleName()</code> acopla el resultado al nombre de la clase. Un valor literal por subclase es más flexible y es lo que justifica el abstracto.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Clases abstractas · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ INTERFACES ══ -->
 <div id="page-interfaces" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Interfaces</div>
@@ -579,7 +622,7 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
           <td><span class="method-sig">Implementar interfaz</span></td>
           <td class="method-desc"><span class="example">public class ReproductorMusical implements ColaCanciones {
     private ArrayList&lt;String&gt; canciones = new ArrayList&lt;&gt;();
- 
+
     @Override
     public void añadirACola(String cancion) {
         canciones.add(cancion);
@@ -614,11 +657,11 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
           <td><span class="method-sig">Cuándo usar interfaz vs abstracta</span></td>
           <td class="method-desc"><span class="example">// Clase abstracta → clases RELACIONADAS que comparten atributos y código
 //   Mascota → Perro, Gato, Loro comparten nombre, edad, fechaNacimiento...
- 
+
 // Interfaz → clases NO relacionadas que comparten un COMPORTAMIENTO
 //   Ropa y Electronica no tienen nada en común estructuralmente
 //   pero ambas pueden aplicar descuento → interface Descuento
- 
+
 // Pista en el enunciado:
 // "todas comparten atributos/código..." → abstracta
 // "algunas clases pueden hacer X..." → interfaz</span></td>
@@ -628,7 +671,7 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
           <td class="method-desc"><span class="example">// Genérico → misma ESTRUCTURA para cualquier tipo
 //   Caja&lt;T&gt;, Pila&lt;T&gt;, Repositorio&lt;T&gt;
 //   Pista en enunciado: "sin crear una clase distinta para cada tipo"
- 
+
 // Interfaz → mismo COMPORTAMIENTO para clases distintas
 //   Descuento, ColaCanciones
 //   Pista en enunciado: "algunas clases pueden hacer X"</span></td>
@@ -638,8 +681,8 @@ class Canario extends Aves { ... }   // concreto — implementa volar()
   </div>
   <div class="page-footer">Interfaces · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
- 
+
+
 <!-- ══ POLIMORFISMO ══ -->
 <div id="page-polimorfismo" class="page">
   <div class="class-header"><div class="package-name">POO — RA7</div>Polimorfismo</div>
@@ -680,7 +723,7 @@ ArrayList&lt;Mascota&gt; animales = new ArrayList&lt;&gt;();
 animales.add(new Perro("Toby", 3));   // ✅
 animales.add(new Gato("Misu", 2));    // ✅
 animales.add(new Loro("Piolín", 4));  // ✅
- 
+
 for (Mascota m : animales) {
     m.muestra();  // llama al muestra() de cada tipo real → polimorfismo
 }</span></td>
@@ -690,14 +733,30 @@ for (Mascota m : animales) {
   </div>
   <div class="page-footer">Polimorfismo · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ GENÉRICOS ══ -->
 <div id="page-genericos" class="page">
   <div class="class-header"><div class="package-name">POO — RA6</div>Genéricos &lt;T&gt;</div>
   <div class="class-description">
     Permiten crear clases y métodos que funcionan con cualquier tipo, sin duplicar código. <code>T</code> es un placeholder — se sustituye por el tipo real al instanciar.
     <div class="note">⚠ Los genéricos NO aceptan tipos primitivos. Usar las clases equivalentes: <code>Integer</code>, <code>Double</code>, <code>Boolean</code>...</div>
-    <div class="tip">💡 Diferencia: Herencia → clases relacionadas. Interfaz → comportamiento compartido. Genérico → misma estructura para CUALQUIER tipo.</div>
+  <div class="class-description">
+    <div class="error">
+      ❌ <strong>REGLA MÁS IMPORTANTE — el error #1 en examen:</strong><br>
+      <code>T</code> en un constructor o método SIEMPRE representa <strong>UN solo elemento</strong>, nunca la colección/lista entera.<br><br>
+      <strong>Caja&lt;T&gt;</strong> guarda un único objeto → su constructor SÍ recibe <code>T</code> (el objeto a guardar).<br>
+      <strong>Repositorio&lt;T&gt;, Pila&lt;T&gt;</strong> guardan una colección → su constructor NO recibe nada, solo crea el <code>ArrayList</code> vacío. Los elementos se añaden uno a uno DESPUÉS con <code>add()</code>/<code>push()</code>.<br><br>
+      <span class="example">// ❌ MAL — confundir "T" con "la lista completa"
+public Repositorio(T elementos) {
+    this.elementos = (ArrayList&lt;T&gt;) elementos;  // sin sentido
+}
+
+// ✅ BIEN — constructor vacío, se añade después
+public Repositorio() {
+    elementos = new ArrayList&lt;&gt;();
+}
+repo.añadir(doc1);  // se mete UNO a UNO, no de golpe</span>
+    </div>
   </div>
   <div class="section-title">Patrones de genéricos</div>
   <div class="section-content">
@@ -705,22 +764,25 @@ for (Mascota m : animales) {
       <thead><tr><th>Patrón</th><th>Sintaxis · Ejemplo</th></tr></thead>
       <tbody>
         <tr>
-          <td><span class="method-sig">Caja&lt;T&gt; — un elemento</span></td>
+          <td><span class="method-sig">Caja&lt;T&gt; — UN elemento<br><span style="font-weight:normal;font-size:11px">(constructor SÍ recibe T)</span></span></td>
           <td class="method-desc"><span class="example">public class Caja&lt;T&gt; {
-    private T contenido;
+    private T contenido;  // guarda UN solo objeto
     public Caja(T contenido) { this.contenido = contenido; }
     public T getContenido() { return contenido; }
     public boolean estaVacia() { return contenido == null; }
 }
-// Instanciar:
-Caja&lt;Documento&gt; c = new Caja&lt;&gt;(miDocumento);  // T = Documento
-Caja&lt;String&gt; c2 = new Caja&lt;&gt;("hola");          // T = String</span></td>
+// Instanciar — pasas el objeto YA CREADO al constructor:
+Documento doc = new Documento("El Quijote", 500);
+Caja&lt;Documento&gt; c = new Caja&lt;&gt;(doc);  // T = Documento, recibe el objeto</span></td>
         </tr>
         <tr>
-          <td><span class="method-sig">Repositorio&lt;T&gt; — colección</span></td>
+          <td><span class="method-sig">Repositorio&lt;T&gt; — VARIOS elementos<br><span style="font-weight:normal;font-size:11px">(constructor NO recibe nada)</span></span></td>
           <td class="method-desc"><span class="example">public class Repositorio&lt;T&gt; {
-    private ArrayList&lt;T&gt; elementos = new ArrayList&lt;&gt;();
-    public void annadir(T elemento) { elementos.add(elemento); }
+    private ArrayList&lt;T&gt; elementos = new ArrayList&lt;&gt;();  // empieza VACÍO
+
+    public Repositorio() { }  // no recibe nada — o se omite, Java lo crea igual
+
+    public void annadir(T elemento) { elementos.add(elemento); }  // UN elemento cada vez
     public void eliminar(T elemento) { elementos.remove(elemento); }
     public ArrayList&lt;T&gt; obtenerTodos() { return elementos; }
     public int total() { return elementos.size(); }
@@ -728,8 +790,10 @@ Caja&lt;String&gt; c2 = new Caja&lt;&gt;("hola");          // T = String</span><
         for (T e : elementos) System.out.println(e); // requiere toString()
     }
 }
-// Instanciar:
-Repositorio&lt;Documento&gt; repo = new Repositorio&lt;&gt;();</span></td>
+// Instanciar VACÍO, luego añadir uno a uno:
+Repositorio&lt;Documento&gt; repo = new Repositorio&lt;&gt;();  // vacío, sin parámetros
+repo.annadir(doc1);  // ahora sí metes elementos, de uno en uno
+repo.annadir(doc2);</span></td>
         </tr>
         <tr>
           <td><span class="method-sig">Pila&lt;T&gt; — LIFO</span></td>
@@ -754,13 +818,13 @@ Repositorio&lt;Documento&gt; repo = new Repositorio&lt;&gt;();</span></td>
           <td><span class="method-sig">Cola — FIFO</span></td>
           <td class="method-desc"><span class="example">// FIFO = First In, First Out — el primero que entra es el primero que sale
 // Ejemplo real: cola de música, impresora, supermercado
- 
+
 // Añadir al final (igual que Pila):
 elementos.add(elemento);
- 
+
 // Obtener y eliminar el PRIMERO (distinto de Pila):
 elementos.remove(0);  // elimina la posición 0 y la devuelve
- 
+
 // Ver el primero sin eliminar:
 elementos.get(0);</span>
           <div class="returns">
@@ -777,9 +841,40 @@ elementos.get(0);</span>
       </tbody>
     </table>
   </div>
+  <div class="section-title">¿Getters y setters en clases con colección interna?</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Caso</th><th>Explicación</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Caja&lt;T&gt; — un elemento</span></td>
+          <td class="method-desc">
+            SÍ tiene sentido getter/setter porque guarda UN objeto que puede querer cambiarse entero.
+            <span class="example">public T getContenido() { return contenido; }
+public void setContenido(T c) { this.contenido = c; }</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Repositorio&lt;T&gt; / Registro&lt;T&gt; — colección</span></td>
+          <td class="method-desc">
+            NO hace falta getter/setter "de toda la lista" — ya tienes métodos más claros y específicos que cubren lo mismo: <code>obtenerTodos()</code> hace de getter, y NO existe un "setter de toda la lista" porque los elementos se añaden uno a uno con <code>annadir()</code>, nunca se reemplaza la colección entera de golpe.
+            <span class="example">// ❌ Redundante e innecesario:
+public T getUsuarios() { return ... }       // tipo incorrecto además — sería ArrayList&lt;T&gt;
+public void setUsuarios(T usuarios) { ... } // no tiene sentido "setear" con un solo elemento
+
+// ✅ Ya cubierto con métodos propios y más claros:
+public ArrayList&lt;T&gt; obtenerTodos() { return elementos; }  // = getter de la lista
+// añadir uno a uno, nunca reemplazar todo de golpe:
+public void annadir(T elemento) { elementos.add(elemento); }</span>
+            <div class="returns">Regla general: getters/setters solo si aportan algo que los métodos propios de la clase no cubren ya.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Genéricos · RA6 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ EXCEPCIONES ══ -->
 <div id="page-excepciones" class="page">
   <div class="class-header"><div class="package-name">java.lang — RA3</div>Manejo de Excepciones</div>
@@ -902,6 +997,76 @@ if (!opcion.matches(regex)) {
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ ¿Capturar DENTRO del método o lanzar HACIA FUERA (throws)?</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Estrategia</th><th>Cuándo usarla · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">❌ Error típico — capturar dentro cuando no toca</span></td>
+          <td class="method-desc">
+            Si el try-catch está DENTRO del método que detecta el error, quien LLAMA al método nunca se entera de que algo falló.
+            <span class="example">// MAL si quieres que quien llama reaccione al error:
+public double calcularTarifaMensual(int horas) {
+    try {
+        if (resultado < 0) throw new HorasInvalidasException("...");
+    } catch (HorasInvalidasException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+    return resultado;  // ⚠ devuelve igualmente, como si no hubiera pasado nada
+}
+// Quien llama a este método NUNCA sabe si hubo un error</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">✅ Lanzar hacia fuera con throws</span></td>
+          <td class="method-desc">
+            El método avisa con <code>throw</code> y declara <code>throws TipoException</code> en su firma. Quien LLAMA decide qué hacer.
+            <span class="example">public double calcularTarifaMensual(int horas) throws HorasInvalidasException {
+    if (resultado < 0) {
+        throw new HorasInvalidasException("Tarifa negativa");
+    }
+    return resultado;
+}
+
+// Quien llama SÍ puede reaccionar:
+try {
+    profe.calcularTarifaMensual(-8);
+} catch (HorasInvalidasException e) {
+    System.out.println("Error: " + e.getMessage());
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">¿Cuándo capturar DENTRO sí tiene sentido?</span></td>
+          <td class="method-desc">
+            Cuando el método YA SABE exactamente qué hacer si falla — no necesita que quien lo llama decida nada. Típico en bucles interactivos que piden datos hasta que sean válidos.
+            <span class="example">// Bien — el bucle sabe que ante error debe seguir pidiendo:
+while (!opcion.equals("salir")) {
+    try {
+        // validar IP
+    } catch (IPInvalidaException e) {
+        System.out.println("Error: " + e.getMessage());
+        // y el while sigue solo, pidiendo otra vez
+    }
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Regla rápida para examen</span></td>
+          <td class="method-desc">
+            <table style="font-size:12px;width:100%">
+              <tr><th style="text-align:left;padding:3px">Enunciado dice...</th><th style="text-align:left;padding:3px">Estrategia</th></tr>
+              <tr><td style="padding:3px">"captura la excepción" (sin más contexto)</td><td style="padding:3px">Capturar dentro del propio método</td></tr>
+              <tr><td style="padding:3px">"captura la excepción" en una clase GESTORA que llama al método</td><td style="padding:3px">El método usa throws, la gestora captura</td></tr>
+              <tr><td style="padding:3px">Bucle que repite hasta dato válido</td><td style="padding:3px">Capturar dentro del bucle</td></tr>
+              <tr><td style="padding:3px">Método reutilizable en varios contextos distintos</td><td style="padding:3px">throws — deja decidir a quien llama</td></tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="section-title">Patrón completo — validación con excepción personalizada (Ej19)</div>
   <div class="section-content">
     <table class="method-table">
@@ -910,7 +1075,7 @@ if (!opcion.matches(regex)) {
         <tr>
           <td><span class="method-sig">Validar IP con regex + rango</span></td>
           <td class="method-desc"><span class="example">String regex = "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}";
- 
+
 // ⚠ ORDEN IMPORTANTE: regex primero, split después
 if (!opcion.matches(regex)) {
     throw new IPInvalidaException("Formato incorrecto");
@@ -966,7 +1131,7 @@ while (!opcion.equals("salir")) {
   </div>
   <div class="page-footer">Excepciones · RA3 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ ARRAYLIST ══ -->
 <div id="page-arraylist" class="page">
   <div class="class-header"><div class="package-name">java.util</div>ArrayList&lt;E&gt;</div>
@@ -1058,13 +1223,32 @@ if (!encontrado) System.out.println("No encontrado");</span></td>
   </div>
   <div class="page-footer">java.util.ArrayList · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ ARRAYS ══ -->
 <div id="page-arrays" class="page">
-  <div class="class-header"><div class="package-name">java.util</div>Arrays (estáticos)</div>
+  <div class="class-header"><div class="package-name">java.util</div>Arrays (estáticos) — diferencia con ArrayList</div>
   <div class="class-description">
     Arrays de tamaño fijo. Tamaño definido al crear, no cambia. Para tamaño dinámico → usar ArrayList.<br>
     <strong>Import para métodos:</strong> <code>import java.util.Arrays;</code>
+  </div>
+  <div class="section-title">⚠ Array vs ArrayList — no son lo mismo</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Aspecto</th><th>Array (<code>int[]</code>, <code>String[]</code>)</th><th>ArrayList (<code>ArrayList&lt;T&gt;</code>)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="method-sig">Tamaño</span></td><td class="method-desc">Fijo — se define al crear, no cambia nunca</td><td class="method-desc">Dinámico — crece y se reduce solo</td></tr>
+        <tr><td><span class="method-sig">Declarar</span></td><td class="method-desc"><span class="example">int[] v = new int[5];
+String[] n = new String[3];
+int[] v2 = {1,2,3};</span></td><td class="method-desc"><span class="example">ArrayList&lt;Integer&gt; v = new ArrayList&lt;&gt;();
+ArrayList&lt;String&gt; n = new ArrayList&lt;&gt;();</span></td></tr>
+        <tr><td><span class="method-sig">Añadir/asignar</span></td><td class="method-desc"><span class="example">v[0] = 10;  // por posición, debe existir ya</span></td><td class="method-desc"><span class="example">v.add(10);  // al final, crece la lista sola</span></td></tr>
+        <tr><td><span class="method-sig">Tamaño actual</span></td><td class="method-desc"><span class="example">v.length   // SIN paréntesis — es un atributo</span></td><td class="method-desc"><span class="example">v.size()   // CON paréntesis — es un método</span></td></tr>
+        <tr><td><span class="method-sig">Eliminar elemento</span></td><td class="method-desc">No se puede directamente — hay que recrear el array</td><td class="method-desc"><span class="example">v.remove(elemento);
+v.remove(indice);</span></td></tr>
+        <tr><td><span class="method-sig">Con genéricos &lt;T&gt;</span></td><td class="method-desc"><code>T[]</code> da problemas técnicos en Java — casi nunca se usa</td><td class="method-desc"><code>ArrayList&lt;T&gt;</code> es el estándar para genéricos — siempre usar esto</td></tr>
+      </tbody>
+    </table>
+    <div class="tip">💡 Regla práctica: si el enunciado dice tamaño fijo conocido de antemano (ej. "4 productos siempre") → Array. Si dice "ir añadiendo", "cantidad variable", o usas genéricos &lt;T&gt; → ArrayList.</div>
   </div>
   <div class="section-title">Declaración y uso</div>
   <div class="section-content">
@@ -1102,7 +1286,7 @@ v[v.length - 1] = nuevoValor;</span></td>
   </div>
   <div class="page-footer">Arrays · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ STRING ══ -->
 <div id="page-string" class="page">
   <div class="class-header"><div class="package-name">java.lang (no necesita import)</div>String</div>
@@ -1132,7 +1316,7 @@ v[v.length - 1] = nuevoValor;</span></td>
   </div>
   <div class="page-footer">java.lang.String · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ MATH ══ -->
 <div id="page-math" class="page">
   <div class="class-header"><div class="package-name">java.lang (no necesita import)</div>Math</div>
@@ -1154,7 +1338,7 @@ int n = (int)(Math.random() * (max - min + 1)) + min;</span></td></tr>
   </div>
   <div class="page-footer">java.lang.Math · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ RANDOM ══ -->
 <div id="page-random" class="page">
   <div class="class-header"><div class="package-name">java.util</div>Random</div>
@@ -1174,7 +1358,7 @@ int n = rnd.nextInt(max - min + 1) + min;</span></td></tr>
   </div>
   <div class="page-footer">java.util.Random · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ LOCALDATE ══ -->
 <div id="page-localdate" class="page">
   <div class="class-header"><div class="package-name">java.time</div>LocalDate · Period · DateTimeFormatter</div>
@@ -1203,7 +1387,7 @@ int edad = Period.between(
   </div>
   <div class="page-footer">java.time · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ REGEX ══ -->
 <div id="page-regex" class="page">
   <div class="class-header"><div class="package-name">java.util.regex</div>Expresiones Regulares — Pattern · Matcher</div>
@@ -1232,7 +1416,62 @@ while (m.find()) {
       </tbody>
     </table>
   </div>
-  <div class="section-title">Caracteres especiales</div>
+  <div class="section-title">⚠ El error más confuso: corchetes [ ]</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Explicación · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">[...] = UN carácter del conjunto</span></td>
+          <td class="method-desc">
+            Los corchetes NO escriben una palabra literal — definen <strong>un único carácter</strong> que puede ser cualquiera de los que están dentro.
+            <span class="example">[abc]      → UNA letra: a, b, o c (no "abc" entero)
+[com]      → UNA letra: c, o, o m (no la palabra "com")
+[a-z]      → UNA letra minúscula cualquiera
+[0-9]      → UN dígito cualquiera
+
+// ❌ ERROR TÍPICO — confundir conjunto con palabra literal:
+"\\.[com]"      → punto + UNA letra (c, o, o m) — NO sirve para validar ".com"
+
+// ✅ CORRECTO — para palabra literal, se escribe tal cual (sin corchetes):
+"\\.com"        → punto + la palabra "com" exactamente
+"\\.[a-zA-Z]{2,}" → punto + 2 o más letras cualquiera (válido para .com, .es, .org...)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Patrones reales de examen — Email</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Caso</th><th>Regex · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Email genérico</span></td>
+          <td class="method-desc"><span class="example">String regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+// pepe@academia.com     → válido
+// pepe.gonzalez@uni.es  → válido
+// pepe@-academia        → inválido (sin punto+letras al final)
+
+// Desglose:
+// [a-zA-Z0-9._%+-]+  → parte antes de la @ (1 o más caracteres válidos)
+// @                  → arroba literal (no necesita corchetes, es un único carácter fijo)
+// [a-zA-Z0-9.-]+     → dominio (1 o más caracteres válidos)
+// \\.                → punto literal (escapado)
+// [a-zA-Z]{2,}       → extensión: 2 o más letras (com, es, org...)</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Email con dominio fijo</span></td>
+          <td class="method-desc"><span class="example">// Si TODOS deben usar @gmail.com exactamente:
+String regex = "[a-zA-Z0-9._%+-]+@gmail\\.com";
+// pepe@gmail.com   → válido
+// pepe@hotmail.com → inválido
+
+// El dominio se escribe literal (sin corchetes) porque es texto fijo, no un conjunto</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="section-content">
     <table class="method-table">
       <thead><tr><th>Símbolo</th><th>Significado</th></tr></thead>
@@ -1254,7 +1493,7 @@ while (m.find()) {
   </div>
   <div class="page-footer">java.util.regex · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ SCANNER ══ -->
 <div id="page-scanner" class="page">
   <div class="class-header"><div class="package-name">java.util</div>Scanner</div>
@@ -1277,7 +1516,7 @@ while (m.find()) {
   </div>
   <div class="page-footer">java.util.Scanner · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 <!-- ══ ERRORES FRECUENTES ══ -->
 <div id="page-errores" class="page">
   <div class="class-header"><div class="package-name">Referencia rápida</div>Errores más comunes en examen</div>
@@ -1340,10 +1579,10 @@ System.out.println("Val: " + (getBateria() - 10));  // ✅</span></td></tr>
   </div>
   <div class="page-footer">Errores frecuentes · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
- 
+
 </div><!-- #main -->
 </div><!-- #wrapper -->
- 
+
 <script>
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
