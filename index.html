@@ -654,6 +654,22 @@ public String rol() { return "Alumno"; }
 }</span></td>
         </tr>
         <tr>
+          <td><span class="method-sig">Cómo nombrar una interfaz</span></td>
+          <td class="method-desc">
+            Una interfaz describe una <strong>capacidad o comportamiento</strong>, no un objeto. Suele terminar en "-able" (en inglés) o describir directamente la acción que permite.
+            <span class="example">// Patrón: [Verbo]able, o sustantivo de la capacidad
+Descuento          → capacidad de aplicar descuento
+ColaCanciones      → capacidad de comportarse como cola
+Trazable           → capacidad de trazar/describir un trayecto
+EcuacionResoluble  → capacidad de obtener soluciones
+
+// Si te cuesta nombrarla, pregúntate:
+// "¿Qué CAPACIDAD da esta interfaz a quien la implemente?"
+// El nombre debe responder a esa pregunta, no describir un objeto</span>
+            <div class="returns">Las clases abstractas SÍ se nombran como objetos (singular, sustantivo concreto): <code>Mascota</code>, <code>Ecuacion</code>, <code>Vehiculo</code>. Las interfaces se nombran como capacidades.</div>
+          </td>
+        </tr>
+        <tr>
           <td><span class="method-sig">Cuándo usar interfaz vs abstracta</span></td>
           <td class="method-desc"><span class="example">// Clase abstracta → clases RELACIONADAS que comparten atributos y código
 //   Mascota → Perro, Gato, Loro comparten nombre, edad, fechaNacimiento...
