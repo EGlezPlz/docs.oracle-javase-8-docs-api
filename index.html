@@ -75,6 +75,9 @@
 
     <div class="nav-section">Colecciones</div>
     <a href="#" onclick="showPage('arraylist')">ArrayList&lt;T&gt;</a>
+    <a href="#" onclick="showPage('hashmap')">HashMap&lt;K,V&gt;</a>
+    <a href="#" onclick="showPage('hashset')">HashSet&lt;T&gt;</a>
+    <a href="#" onclick="showPage('streams')">Streams (filter/map/reduce)</a>
     <a href="#" onclick="showPage('arrays')">Arrays (estáticos)</a>
 
     <div class="nav-section">Utilidades</div>
@@ -1237,6 +1240,423 @@ if (!encontrado) System.out.println("No encontrado");</span></td>
     </table>
   </div>
   <div class="page-footer">java.util.ArrayList · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
+<!-- ══ HASHMAP ══ -->
+<div id="page-hashmap" class="page">
+  <div class="class-header"><div class="package-name">java.util</div>HashMap&lt;K,V&gt; — colección clave-valor</div>
+  <div class="class-description">
+    Almacena pares <strong>clave-valor</strong>. Se accede por la clave (<code>K</code>), no por posición numérica como ArrayList. Las claves NUNCA se repiten — si usas una clave existente, el valor anterior se sobrescribe.<br>
+    <strong>Import:</strong> <code>import java.util.HashMap;</code>
+    <div class="tip">
+      💡 Usar HashMap cuando los datos pueden tener "huecos" (no todas las posiciones se rellenan en orden) y necesitas identificar cada dato por algo concreto (un día, un código, un nombre) en vez de por su posición física en una lista.
+    </div>
+  </div>
+  <div class="section-title">ArrayList vs HashMap — cuándo usar cada uno</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Situación</th><th>Estructura</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Datos en orden, sin huecos, accedes por posición</td><td><span class="method-sig">ArrayList&lt;T&gt;</span></td><td class="method-desc">No necesitas identificar cada dato individualmente — el orden basta</td></tr>
+        <tr><td>Datos identificados por algo concreto (día, código, nombre), pueden no completarse todos en orden</td><td><span class="method-sig">HashMap&lt;K,V&gt;</span></td><td class="method-desc">Necesitas saber "esto es el día 7" sin depender de contar posiciones</td></tr>
+      </tbody>
+    </table>
+    <span class="example">// Ejemplo: registrar temperaturas, pudiendo saltarte días
+HashMap&lt;Integer, Double&gt; temperaturas = new HashMap&lt;&gt;();
+temperaturas.put(3, 18.5);  // día 3
+temperaturas.put(7, 21.0);  // día 7 — sin haber rellenado el 4,5,6
+// con ArrayList no sabrías qué posición corresponde a qué día si hay huecos</span>
+  </div>
+  <div class="section-title">⚠ HashMap NO tiene tamaño fijo — diferencia con Array</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Aspecto</th><th>Array</th><th>HashMap</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Tamaño al crear</span></td>
+          <td class="method-desc"><span class="example">int[] v = new int[6];
+// FIJO: exactamente 6 posiciones para siempre</span></td>
+          <td class="method-desc"><span class="example">HashMap&lt;Integer,Double&gt; m = new HashMap&lt;&gt;();
+// SIEMPRE empieza vacío (0 pares), sin límite fijado</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">¿Cómo crece?</span></td>
+          <td class="method-desc">No crece — el tamaño es inamovible desde la creación</td>
+          <td class="method-desc">Crece sola con cada <code>put()</code> nuevo, sin límite predefinido</td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">¿Cómo sé "cuántas debería tener en total"?</span></td>
+          <td class="method-desc"><code>v.length</code> ya te lo dice — es el tamaño fijo</td>
+          <td class="method-desc">
+            El HashMap NO lo sabe — solo conoce lo que YA tiene metido (<code>size()</code>). Si necesitas un "objetivo total" (ej. días del mes), debes guardarlo TÚ en una variable aparte.
+            <span class="example">int diasDelMes = 30;          // la META, la guardas tú aparte
+temperaturas.size();          // lo que YA llevas registrado
+
+if (temperaturas.size() == diasDelMes) {
+    System.out.println("Mes completo");
+}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Method Summary</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Método</th><th>Qué hace · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">put(K clave, V valor)</span><span class="tag tag-void">void</span></td>
+          <td class="method-desc">Guarda el par clave-valor. Si la clave YA EXISTE, sobrescribe el valor anterior (no duplica).
+          <span class="example">temperaturas.put(6, 18.5);  // añade día 6
+temperaturas.put(6, 20.0);  // ⚠ sobrescribe — el día 6 ahora vale 20.0</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">get(K clave)</span><span class="tag tag-obj">V</span></td>
+          <td class="method-desc">Devuelve el valor asociado a esa clave. Si la clave no existe, devuelve <code>null</code>.
+          <span class="example">Double temp = temperaturas.get(6);  // 20.0
+Double t2 = temperaturas.get(99);   // null — no existe esa clave</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">containsKey(K clave)</span><span class="tag tag-bool">boolean</span></td>
+          <td class="method-desc">True si esa clave ya tiene un valor guardado. Imprescindible para comprobar "¿este día ya está registrado?".
+          <span class="example">if (temperaturas.containsKey(6)) {
+    System.out.println("El día 6 ya tiene temperatura registrada");
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">remove(K clave)</span><span class="tag tag-obj">V</span></td>
+          <td class="method-desc">Elimina el par y devuelve el valor que tenía.
+          <span class="example">temperaturas.remove(6);</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">size()</span><span class="tag tag-int">int</span></td>
+          <td class="method-desc">Número de pares clave-valor guardados.
+          <span class="example">int diasRegistrados = temperaturas.size();</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">keySet()</span><span class="tag tag-obj">Set&lt;K&gt;</span></td>
+          <td class="method-desc">Devuelve el conjunto de todas las claves — útil para recorrer el HashMap.
+          <span class="example">for (Integer dia : temperaturas.keySet()) {
+    System.out.println("Día " + dia + ": " + temperaturas.get(dia) + "º");
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">values()</span><span class="tag tag-obj">Collection&lt;V&gt;</span></td>
+          <td class="method-desc">Devuelve todos los valores (sin las claves) — útil para cálculos como medias, sumas, máximos.
+          <span class="example">double suma = 0;
+for (Double temp : temperaturas.values()) {
+    suma += temp;
+}
+double media = suma / temperaturas.size();</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Recorrer un HashMap — patrones</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Patrón</th><th>Cuándo · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Recorrer claves (con acceso al valor)</span></td>
+          <td class="method-desc"><span class="example">for (Integer dia : temperaturas.keySet()) {
+    Double temp = temperaturas.get(dia);
+    System.out.println("Día " + dia + ": " + temp + "º");
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Recorrer solo valores (sin necesitar la clave)</span></td>
+          <td class="method-desc"><span class="example">for (Double temp : temperaturas.values()) {
+    System.out.println(temp);
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Comprobar huecos (días que faltan)</span></td>
+          <td class="method-desc"><span class="example">for (int dia = 1; dia &lt;= diasDelMes; dia++) {
+    if (!temperaturas.containsKey(dia)) {
+        System.out.println("Falta el día " + dia);
+    }
+}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Patrón completo real — Gestora + HashMap + validaciones + menú</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Pieza</th><th>Código</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Clase gestora con HashMap + validaciones en cadena</span></td>
+          <td class="method-desc"><span class="example">public class GestorClima {
+    private HashMap&lt;Integer, Double&gt; temperaturas;
+    private int diasMes;  // la META, aparte del HashMap — ver nota arriba
+
+    public GestorClima() {
+        temperaturas = new HashMap&lt;&gt;();
+    }
+
+    public void fijarDiasMes(int diasMes) {
+        if (diasMes &lt; 1 || diasMes &gt; 31) {
+            System.out.println("Número de días incorrecto.");
+            return;
+        }
+        this.diasMes = diasMes;
+    }
+
+    public void registrarTemperatura(int dia, double temp) {
+        // Validaciones en cadena — cada if corta el flujo si falla
+        if (dia &lt; 1 || dia &gt; diasMes) {
+            System.out.println("El día debe estar entre 1 y " + diasMes + ".");
+            return;
+        }
+        if (temperaturas.containsKey(dia)) {
+            System.out.println("El día " + dia + " ya está registrado.");
+            return;
+        }
+        temperaturas.put(dia, temp);
+        System.out.println("Registrado correctamente.");
+    }
+
+    public double calcularMedia() {
+        double suma = 0;
+        for (Double t : temperaturas.values()) {
+            suma += t;
+        }
+        return suma / temperaturas.size();  // ⚠ entre size(), NO entre diasMes
+        // (un día sin registrar no cuenta como 0 — solo se promedia lo que SÍ existe)
+    }
+
+    public boolean estaCompleto() {
+        return temperaturas.size() == diasMes;
+    }
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Main con menú switch + while</span></td>
+          <td class="method-desc"><span class="example">Scanner sc = new Scanner(System.in);
+GestorClima gc = new GestorClima();
+int opcion = 0;
+
+while (opcion != 5) {
+    System.out.println("1. Fijar días | 2. Registrar | 3. Pendientes | 4. Media | 5. Salir");
+    opcion = sc.nextInt();
+    switch (opcion) {
+        case 1:
+            int dias = sc.nextInt();
+            gc.fijarDiasMes(dias);
+            break;
+        case 2:
+            int dia = sc.nextInt();
+            double temp = sc.nextDouble();
+            gc.registrarTemperatura(dia, temp);
+            break;
+        case 3:
+            gc.mostrarDiasPendientes();
+            break;
+        case 4:
+            if (gc.estaCompleto()) {
+                System.out.println("Media: " + gc.calcularMedia());
+            } else {
+                System.out.println("Aún faltan días.");
+            }
+            break;
+        case 5:
+            System.out.println("Saliendo...");
+            break;
+        default:
+            System.out.println("Opción no válida.");
+            break;
+    }
+}</span>
+          <div class="returns">💡 Esto es "parar y retomar" SIN guardar a fichero: el HashMap vive como atributo de la clase gestora durante toda la ejecución — puedes entrar y salir del case 2 tantas veces como quieras, en cualquier orden de días, sin perder lo ya registrado.</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">java.util.HashMap · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
+<!-- ══ HASHSET ══ -->
+<div id="page-hashset" class="page">
+  <div class="class-header"><div class="package-name">java.util</div>HashSet&lt;T&gt; — colección sin duplicados</div>
+  <div class="class-description">
+    Almacena elementos <strong>únicos</strong>, sin orden garantizado. Si intentas añadir un elemento que ya existe, simplemente no pasa nada — no se duplica, no da error.<br>
+    <strong>Import:</strong> <code>import java.util.HashSet;</code>
+    <div class="tip">💡 Usar cuando necesitas garantizar que no haya elementos repetidos, y NO te importa el orden ni necesitas acceder por posición o por clave.</div>
+  </div>
+  <div class="section-title">HashMap vs HashSet — no confundir</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Aspecto</th><th>HashMap&lt;K,V&gt;</th><th>HashSet&lt;T&gt;</th></tr></thead>
+      <tbody>
+        <tr><td><span class="method-sig">Qué guarda</span></td><td class="method-desc">Pares clave-valor</td><td class="method-desc">Solo valores, sin clave asociada</td></tr>
+        <tr><td><span class="method-sig">Tipos genéricos</span></td><td class="method-desc"><code>&lt;K, V&gt;</code> — dos tipos</td><td class="method-desc"><code>&lt;T&gt;</code> — un solo tipo, como ArrayList</td></tr>
+        <tr><td><span class="method-sig">Qué no se repite</span></td><td class="method-desc">Las CLAVES no se repiten (valores sí pueden repetirse)</td><td class="method-desc">Los ELEMENTOS en sí no se repiten</td></tr>
+        <tr><td><span class="method-sig">Acceso a un elemento</span></td><td class="method-desc"><code>get(clave)</code> — accedes directo por clave</td><td class="method-desc">No hay <code>get()</code> por posición — solo compruebas si existe con <code>contains()</code></td></tr>
+        <tr><td><span class="method-sig">Caso de uso típico</span></td><td class="method-desc">"Día 7 → temperatura 21.0" (asociar un dato con un identificador)</td><td class="method-desc">"Lista de emails ya registrados, sin duplicados" (solo importa si existe o no)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Method Summary</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Método</th><th>Qué hace · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">add(T elemento)</span><span class="tag tag-bool">boolean</span></td>
+          <td class="method-desc">Añade el elemento. Devuelve <code>true</code> si se añadió (no existía), <code>false</code> si ya existía (no hizo nada).
+          <span class="example">HashSet&lt;String&gt; emails = new HashSet&lt;&gt;();
+emails.add("pepe@mail.com");  // true — se añade
+emails.add("pepe@mail.com");  // false — ya existía, no se duplica</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">contains(T elemento)</span><span class="tag tag-bool">boolean</span></td>
+          <td class="method-desc">True si el elemento ya está en el conjunto.
+          <span class="example">if (emails.contains("pepe@mail.com")) {
+    System.out.println("Email ya registrado");
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">remove(T elemento)</span><span class="tag tag-bool">boolean</span></td>
+          <td class="method-desc">Elimina el elemento. True si existía y se eliminó.
+          <span class="example">emails.remove("pepe@mail.com");</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">size()</span><span class="tag tag-int">int</span></td>
+          <td class="method-desc">Número de elementos únicos almacenados.
+          <span class="example">int total = emails.size();</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">isEmpty()</span><span class="tag tag-bool">boolean</span></td>
+          <td class="method-desc">True si no tiene elementos.
+          <span class="example">if (emails.isEmpty()) { ... }</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Recorrer un HashSet</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Patrón</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">for-each</span></td>
+          <td class="method-desc"><span class="example">for (String email : emails) {
+    System.out.println(email);
+}
+// ⚠ El orden de recorrido NO está garantizado — no asumas que sale
+// en el mismo orden en que los añadiste (a diferencia de ArrayList)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">java.util.HashSet · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
+<!-- ══ STREAMS ══ -->
+<div id="page-streams" class="page">
+  <div class="class-header"><div class="package-name">java.util.stream — RA6</div>Streams · Operaciones agregadas (filtrado, reducción, recolección)</div>
+  <div class="class-description">
+    El currículum oficial de RA6 menciona explícitamente "operaciones agregadas: filtrado, reducción y recolección" — esto son los <strong>Streams</strong> de Java 8. Permiten procesar colecciones (ArrayList, HashMap...) de forma declarativa, sin escribir bucles for manuales.<br>
+    <strong>Import:</strong> normalmente no hace falta — vienen con la propia colección al llamar <code>.stream()</code>
+    <div class="note">⚠ Es sintaxis más avanzada y menos intuitiva. Si el examen lo pide, usa el patrón completo de abajo como plantilla — no hace falta memorizar teoría de programación funcional, solo el patrón mecánico.</div>
+  </div>
+  <div class="section-title">Las 3 operaciones agregadas del currículum</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Operación</th><th>Qué hace · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">filter() — filtrado</span></td>
+          <td class="method-desc">
+            Selecciona solo los elementos que cumplen una condición. Recibe una "función" que devuelve true/false para cada elemento.
+            <span class="example">ArrayList&lt;Double&gt; temperaturas = new ArrayList&lt;&gt;(List.of(18.5, 22.0, 15.0, 25.5));
+
+// Filtrar las temperaturas mayores a 20:
+List&lt;Double&gt; calidas = temperaturas.stream()
+    .filter(t -&gt; t &gt; 20)
+    .collect(Collectors.toList());
+// calidas = [22.0, 25.5]</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">map() — transformación</span></td>
+          <td class="method-desc">
+            Transforma cada elemento aplicando una operación, sin filtrar nada.
+            <span class="example">// Convertir cada temperatura de Celsius a Fahrenheit:
+List&lt;Double&gt; fahrenheit = temperaturas.stream()
+    .map(t -&gt; t * 9/5 + 32)
+    .collect(Collectors.toList());</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">reduce() — reducción</span></td>
+          <td class="method-desc">
+            Combina todos los elementos en un único resultado (suma, máximo, concatenación...).
+            <span class="example">// Sumar todas las temperaturas:
+double suma = temperaturas.stream()
+    .reduce(0.0, (acumulado, actual) -&gt; acumulado + actual);
+
+// Más simple para sumas/medias — sin reduce:
+double suma2 = temperaturas.stream().mapToDouble(Double::doubleValue).sum();
+double media = temperaturas.stream().mapToDouble(Double::doubleValue).average().orElse(0);</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">collect() — recolección</span></td>
+          <td class="method-desc">
+            Convierte el resultado del stream de vuelta a una colección normal (List, Set...). Casi siempre va al final de la cadena.
+            <span class="example">List&lt;Double&gt; resultado = temperaturas.stream()
+    .filter(t -&gt; t &gt; 18)
+    .collect(Collectors.toList());</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Patrón completo aplicado a HashMap — caso real de examen</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Caso</th><th>Código</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Filtrar valores de un HashMap</span></td>
+          <td class="method-desc"><span class="example">HashMap&lt;Integer, Double&gt; temperaturas = new HashMap&lt;&gt;();
+temperaturas.put(1, 18.5);
+temperaturas.put(2, 25.0);
+temperaturas.put(3, 15.0);
+
+// Días con temperatura mayor a 20 — usando stream sobre values():
+long diasCalidos = temperaturas.values().stream()
+    .filter(t -&gt; t &gt; 20)
+    .count();
+
+// Media usando stream — alternativa al bucle for manual:
+double media = temperaturas.values().stream()
+    .mapToDouble(Double::doubleValue)
+    .average()
+    .orElse(0);  // 0 si el HashMap está vacío</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Equivalente SIN streams (con bucle for — válido también)</span></td>
+          <td class="method-desc"><span class="example">// Si streams no sale fluido en examen, el for normal es igual de válido:
+double suma = 0;
+int contador = 0;
+for (Double t : temperaturas.values()) {
+    if (t &gt; 20) contador++;
+    suma += t;
+}
+double media = suma / temperaturas.size();</span>
+            <div class="returns">💡 En examen, si streams te bloquea, usa el bucle for — el resultado es el mismo y demuestra el mismo dominio de la colección.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">Streams · RA6 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
 <!-- ══ ARRAYS ══ -->
