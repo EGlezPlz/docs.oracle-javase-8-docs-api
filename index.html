@@ -60,6 +60,7 @@
   <nav>
     <div class="nav-section">Fundamentos</div>
     <a href="#" class="active" onclick="showPage('sintaxis')">Sintaxis y estructura</a>
+    <a href="#" onclick="showPage('control')">if / for / while / do-while / switch</a>
     <a href="#" onclick="showPage('tipos')">Tipos de datos</a>
     <a href="#" onclick="showPage('constructores')">Clases y constructores</a>
     <a href="#" onclick="showPage('metodos')">Métodos</a>
@@ -82,6 +83,7 @@
 
     <div class="nav-section">Utilidades</div>
     <a href="#" onclick="showPage('string')">String</a>
+    <a href="#" onclick="showPage('comparable')">Comparable / Comparator</a>
     <a href="#" onclick="showPage('math')">Math</a>
     <a href="#" onclick="showPage('random')">Random</a>
     <a href="#" onclick="showPage('localdate')">LocalDate / Period</a>
@@ -89,6 +91,8 @@
     <a href="#" onclick="showPage('scanner')">Scanner</a>
 
     <div class="nav-section">Errores frecuentes</div>
+    <a href="#" onclick="showPage('decision')">¿Abstracta, Interfaz o Genérico?</a>
+    <a href="#" onclick="showPage('apireal')">Cómo usar la API real</a>
     <a href="#" onclick="showPage('errores')">Errores más comunes</a>
   </nav>
 </div>
@@ -186,6 +190,108 @@ public class CuentaBancaria {
   <div class="page-footer">Fundamentos · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
+<!-- ══ ESTRUCTURAS DE CONTROL ══ -->
+<div id="page-control" class="page">
+  <div class="class-header"><div class="package-name">Fundamentos — RA1/RA3</div>Estructuras de control — if, for, while, do-while, switch</div>
+  <div class="class-description">
+    <div class="note">⚠ Las estructuras de control NO están en la API de Java — son sintaxis del propio lenguaje (Java Language Specification), no clases ni métodos. La API solo documenta clases (ArrayList, String...). Esto hay que llevarlo memorizado, no se puede "buscar" en la API el día del examen.</div>
+  </div>
+  <div class="section-title">Todas las estructuras, comparadas</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Estructura</th><th>Cuándo usarla · Sintaxis</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">if / else if / else</span></td>
+          <td class="method-desc">Decisión simple o en cadena, se ejecuta UNA vez.
+          <span class="example">if (edad &gt;= 18) {
+    System.out.println("Mayor de edad");
+} else if (edad &gt;= 13) {
+    System.out.println("Adolescente");
+} else {
+    System.out.println("Niño");
+}</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">for clásico</span></td>
+          <td class="method-desc">Cuando sabes de antemano CUÁNTAS veces repetir, o necesitas el índice.
+          <span class="example">for (int i = 0; i &lt; 10; i++) {
+    System.out.println(i);
+}
+// inicialización ; condición ; incremento</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">for-each</span></td>
+          <td class="method-desc">Recorrer TODOS los elementos de una colección, sin necesitar el índice.
+          <span class="example">for (Mascota m : animales) {
+    m.muestra();
+}
+// ⚠ No puedes modificar el índice ni saltar elementos — solo recorre uno a uno</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">while</span></td>
+          <td class="method-desc">Repites mientras se cumpla una condición — NO sabes de antemano cuántas veces (depende del usuario, de un evento...). Comprueba la condición ANTES de entrar — puede no ejecutarse ni una vez.
+          <span class="example">int n = 0;
+while (n &lt; 5) {
+    System.out.println(n);
+    n++;
+}
+// Si la condición es false desde el principio, el bloque NUNCA se ejecuta</span></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">do-while</span></td>
+          <td class="method-desc">Igual que while, pero comprueba la condición DESPUÉS — garantiza que el bloque se ejecute AL MENOS UNA VEZ.
+          <span class="example">int numero;
+do {
+    System.out.println("Introduce un número positivo:");
+    numero = sc.nextInt();
+} while (numero &lt;= 0);
+// Útil cuando necesitas pedir un dato antes de poder validar la condición —
+// no hace falta inicializar la variable con un valor "trampa" antes del bucle</span>
+          <div class="returns">💡 Pista: si el enunciado dice "pide un dato y repite hasta que sea válido", do-while encaja perfecto — necesitas el primer dato antes de poder comprobar nada.</div></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">switch</span></td>
+          <td class="method-desc">Comparar UNA variable contra varios valores posibles concretos — alternativa más legible a muchos if-else if encadenados.
+          <span class="example">switch (opcion) {
+    case 1:
+        System.out.println("Opción 1");
+        break;  // ⚠ sin break, sigue ejecutando los casos siguientes
+    case 2:
+        System.out.println("Opción 2");
+        break;
+    default:
+        System.out.println("Opción no válida");
+        break;
+}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">while vs do-while — diferencia visual</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Caso</th><th>while</th><th>do-while</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Condición FALSA desde el inicio</td>
+          <td class="method-desc"><span class="example">int n = 10;
+while (n &lt; 5) {
+    System.out.println("nunca se imprime");
+}
+// 0 ejecuciones</span></td>
+          <td class="method-desc"><span class="example">int n = 10;
+do {
+    System.out.println("se imprime UNA vez");
+} while (n &lt; 5);
+// 1 ejecución, luego sale</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">Estructuras de control · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
 <!-- ══ TIPOS DE DATOS ══ -->
 <div id="page-tipos" class="page">
   <div class="class-header"><div class="package-name">Fundamentos</div>Tipos de datos</div>
@@ -241,6 +347,60 @@ String s2 = "" + 25;  // concatenación fuerza conversión</span></td>
   <div class="class-description">
     Una clase es la plantilla. Un objeto es una instancia de esa plantilla creada con <code>new</code>.
     <div class="tip">💡 El nombre del archivo .java debe coincidir exactamente con el nombre de la clase pública.</div>
+    <div class="error">
+      ❌ <strong>REGLA GENERAL — aplica SIEMPRE, no solo en genéricos &lt;T&gt;:</strong><br>
+      Si una clase tiene un <code>ArrayList</code> (o HashMap, HashSet...) como atributo, el constructor casi NUNCA lo recibe ya relleno desde fuera. Lo normal es que el constructor lo inicialice <strong>vacío</strong>, y los elementos se añadan uno a uno DESPUÉS con sus propios métodos (<code>add()</code>, <code>registrar()</code>, <code>conectar()</code>...).
+      <span class="example">// ❌ MAL — recibir la colección entera ya hecha:
+public Servidor(String ip, ArrayList&lt;Cliente&gt; clientes) {
+    this.clientes = clientes;  // ¿de dónde sale esa lista ya hecha? No tiene sentido
+}
+
+// ✅ BIEN — empieza vacía, se rellena con un método aparte:
+public Servidor(String ip) {
+    this.clientes = new ArrayList&lt;&gt;();  // vacía al crear el servidor
+}
+public void conectarCliente(Cliente c) {
+    clientes.add(c);  // se añaden uno a uno, cuando ocurre el evento real
+}</span>
+      <div class="returns">Pista para detectarlo: si en el enunciado los elementos "se van añadiendo", "se conectan", "se registran" — el constructor NO los recibe, solo los inicializa vacíos.</div>
+    </div>
+  </div>
+  <div class="section-title">⚠ Qué significa "this" exactamente</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Uso</th><th>Significado · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">this = "el objeto que se está ejecutando ahora"</span></td>
+          <td class="method-desc">
+            <code>this</code> es una referencia automática que apunta SIEMPRE al objeto concreto sobre el que se está ejecutando el método/constructor en ese momento. No es un nombre que tú declares — Java lo proporciona solo, dentro de cualquier método no estático.
+            <span class="example">public class Persona {
+    private String nombre;
+    public Persona(String nombre) {
+        this.nombre = nombre;
+        // this.nombre → el atributo de ESTE objeto
+        // nombre (sin this) → el parámetro recibido
+        // Se distinguen porque tienen el mismo nombre
+    }
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">this como objeto completo (pasarse a sí mismo)</span></td>
+          <td class="method-desc">
+            Cuando una clase necesita pasarse ENTERA como parámetro a otro método (no solo un dato suyo), usa <code>this</code> sin más — significa "este mismo objeto, tal cual soy ahora".
+            <span class="example">public class Cliente {
+    public void ping() {
+        servidor.respuesta(this);
+        // this = este mismo Cliente que está llamando a ping()
+        // así Servidor recibe la referencia exacta de quién le llamó
+    }
+}</span>
+            <div class="returns">Pista: si necesitas pasar "este objeto" a otro método sin crear uno nuevo, es <code>this</code>, no <code>new Clase()</code> ni un getter inventado.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="section-title">Estructura de una clase completa</div>
   <div class="section-content">
@@ -312,6 +472,30 @@ p = new Persona("Ana", 25);</span></td>
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ Destrucción de objetos — RA2, contenido oficial del currículum</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Explicación</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Java NO tiene destructor manual</span></td>
+          <td class="method-desc">
+            A diferencia de otros lenguajes (C++), en Java no escribes código para "destruir" un objeto. Java tiene un proceso automático llamado <strong>Garbage Collector (recolector de basura)</strong> que libera memoria de objetos que ya no tienen ninguna referencia apuntándoles.
+            <span class="example">Persona p = new Persona("Ana", 25);
+p = null; // ahora nadie referencia al objeto Persona original
+// el Garbage Collector lo eliminará de memoria automáticamente, en algún momento</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">finalize() — existe pero NO se usa en la práctica</span></td>
+          <td class="method-desc">
+            Java SE 8 tiene un método <code>finalize()</code> que se ejecuta antes de que el Garbage Collector elimine un objeto, pero está obsoleto y desaconsejado — no es necesario implementarlo en ningún ejercicio normal.
+            <div class="returns">💡 Para examen: si preguntan teoría sobre "destrucción de objetos", la respuesta correcta es explicar el Garbage Collector — no hay sintaxis que escribir, es un concepto, no una herramienta a programar.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Clases y constructores · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
@@ -351,6 +535,37 @@ p = new Persona("Ana", 25);</span></td>
 // Se llama SIN crear objeto: NombreClase.contar(v, 5);
 // o directamente si estás en la misma clase: contar(v, 5);</span>
           <div class="returns">Los métodos de <code>Math</code> son todos static: <code>Math.random()</code>, <code>Math.round()</code>...</div></td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">⚠ static vs no-static — diferencia completa</span></td>
+          <td class="method-desc">
+            <table style="font-size:12px;width:100%">
+              <tr><th style="text-align:left;padding:3px">Aspecto</th><th style="text-align:left;padding:3px">Método normal (sin static)</th><th style="text-align:left;padding:3px">Método static</th></tr>
+              <tr><td style="padding:3px">¿Necesita objeto?</td><td style="padding:3px">SÍ — <code>obj.metodo()</code></td><td style="padding:3px">NO — <code>Clase.metodo()</code></td></tr>
+              <tr><td style="padding:3px">¿Accede a atributos de instancia?</td><td style="padding:3px">SÍ, directamente</td><td style="padding:3px">NO puede — no hay objeto del que coger datos</td></tr>
+              <tr><td style="padding:3px">¿Usa this?</td><td style="padding:3px">SÍ, implícito</td><td style="padding:3px">NO existe <code>this</code> en static</td></tr>
+              <tr><td style="padding:3px">Cuándo usarlo</td><td style="padding:3px">Comportamiento propio de CADA objeto (getNombre, atacar...)</td><td style="padding:3px">Operación que no depende de ningún objeto concreto — utilidades, validadores</td></tr>
+            </table>
+            <span class="example">// ❌ ERROR — un método static no puede acceder a atributos de instancia:
+public class Persona {
+    private String nombre;
+    public static void mostrar() {
+        System.out.println(nombre);  // ❌ no compila — static no ve "nombre"
+    }
+}
+
+// ✅ Patrón típico de método static — Validador / Utilidad
+public class ValidadorIP {
+    public static void validar(String ip) throws IPInvalidaException {
+        // no necesita atributos propios, solo procesa lo que le pasan
+        if (!ip.matches(regex)) throw new IPInvalidaException("...");
+    }
+}
+// Se llama sin crear objeto:
+ValidadorIP.validar("192.168.1.1");
+// NUNCA: new ValidadorIP().validar(...)  ← innecesario para algo static</span>
+            <div class="returns">💡 Pista para examen: si una clase se llama "Validador...", "Calculadora...", "Utilidad..." y no necesita guardar datos propios entre llamadas, casi seguro sus métodos deben ser <code>static</code>.</div>
+          </td>
         </tr>
         <tr>
           <td><span class="method-sig">Sobrecarga de métodos</span></td>
@@ -750,6 +965,62 @@ for (Mascota m : animales) {
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ Composición — cuando una clase necesita LLAMAR métodos de otra</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Explicación · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Regla clave</span></td>
+          <td class="method-desc">
+            Si la clase A necesita EJECUTAR métodos de la clase B (no solo guardar un dato suyo), A debe guardar una <strong>referencia al objeto B completo</strong> como atributo — no solo un dato suelto (String, int...) que describa a B.
+            <span class="example">// ❌ MAL — solo guarda un dato, no puede llamar métodos de Servidor:
+public class Cliente {
+    private String ipServidor;  // solo un String, no puedes hacer ipServidor.respuesta()
+}
+
+// ✅ BIEN — guarda el objeto completo, puede llamar sus métodos:
+public class Cliente {
+    private Servidor servidor;  // el objeto entero
+
+    public void ping() {
+        servidor.respuesta(this);  // ahora SÍ puede llamar al método del servidor
+    }
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Pasar "this" como parámetro</span></td>
+          <td class="method-desc">
+            Cuando A llama a un método de B y B necesita saber QUÉ objeto A le llamó, A se pasa a sí mismo con <code>this</code>.
+            <span class="example">// En Cliente:
+public void ping() {
+    servidor.respuesta(this);  // "this" = este mismo objeto Cliente
+}
+
+// En Servidor:
+public void respuesta(Cliente c) {
+    System.out.println("Respuesta recibida de " + c.getIp());
+}</span>
+            <div class="returns">Pista en el enunciado: "el cliente podrá ejecutar un método del servidor" → el cliente necesita una referencia al servidor como atributo, no solo su IP en texto.</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Relación bidireccional (A conoce a B, B conoce a A)</span></td>
+          <td class="method-desc">
+            Es válido que dos clases se referencien mutuamente — Servidor tiene una lista de Cliente, y cada Cliente tiene una referencia a su Servidor.
+            <span class="example">public class Servidor {
+    private ArrayList&lt;Cliente&gt; clientes;  // Servidor conoce a sus Clientes
+}
+
+public class Cliente {
+    private Servidor servidor;  // cada Cliente conoce a SU Servidor
+}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Polimorfismo · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
@@ -885,6 +1156,38 @@ public ArrayList&lt;T&gt; obtenerTodos() { return elementos; }  // = getter de l
 // añadir uno a uno, nunca reemplazar todo de golpe:
 public void annadir(T elemento) { elementos.add(elemento); }</span>
             <div class="returns">Regla general: getters/setters solo si aportan algo que los métodos propios de la clase no cubren ya.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">⚠ Nota breve — XML/JSON (RA6, mencionado en currículum, bajo riesgo)</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">¿Qué dice el currículum?</span></td>
+          <td class="method-desc">
+            RA6 menciona "tratamiento de documentos en diferentes lenguajes de intercambio de datos" — esto se refiere a leer/escribir XML o JSON desde Java.
+            <div class="returns">Ninguno de tus ejercicios prácticos de T7/T8 lo usa, así que es bajo riesgo real para tu examen concreto — pero si aparece, esta es la idea mínima.</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">JSON — idea mínima (con librerías externas tipo Gson/Jackson, normalmente NO disponibles en examen sin Maven)</span></td>
+          <td class="method-desc">
+            En un examen sin librerías externas, lo más probable es que NO se pida parsear JSON real — si aparece, suele ser construir un String con formato JSON manualmente:
+            <span class="example">String json = "{\"nombre\":\"" + nombre + "\",\"edad\":" + edad + "}";
+System.out.println(json);
+// {"nombre":"Ana","edad":25}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">XML — idea mínima</span></td>
+          <td class="method-desc">
+            Igual que JSON — sin librerías externas, lo más probable es construir el String con formato manualmente:
+            <span class="example">String xml = "&lt;persona&gt;&lt;nombre&gt;" + nombre + "&lt;/nombre&gt;&lt;edad&gt;" + edad + "&lt;/edad&gt;&lt;/persona&gt;";</span>
+            <div class="returns">💡 Si el examen pidiera parseo real de XML/JSON con librería, sería territorio fuera de lo que tus ejercicios prácticos han cubierto — en ese caso, escribe la estructura de datos en Java normal (clases, ArrayList) y deja un comentario explicando que representaría el mismo contenido que el XML/JSON pedido.</div>
           </td>
         </tr>
       </tbody>
@@ -1147,6 +1450,52 @@ while (!opcion.equals("salir")) {
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ Aserciones (assert) — RA3, contenido oficial del currículum</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Explicación · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Qué es una aserción</span></td>
+          <td class="method-desc">
+            Comprueba que una condición es verdadera DURANTE EL DESARROLLO — si no se cumple, lanza <code>AssertionError</code> y detiene el programa inmediatamente. Se usa para detectar errores de programación propios, NO para validar datos del usuario (eso es try-catch).
+            <span class="example">int edad = -5;
+assert edad &gt;= 0 : "La edad no puede ser negativa";
+// Si edad &gt;= 0 es false → AssertionError con ese mensaje
+// Si edad &gt;= 0 es true → no pasa nada, sigue la ejecución normal</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Sintaxis</span></td>
+          <td class="method-desc">
+            <span class="example">assert condicion;
+// o con mensaje personalizado:
+assert condicion : "mensaje de error si falla";</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">assert vs try-catch — diferencia clave</span></td>
+          <td class="method-desc">
+            <table style="font-size:12px;width:100%">
+              <tr><th style="text-align:left;padding:3px">Aspecto</th><th style="text-align:left;padding:3px">assert</th><th style="text-align:left;padding:3px">try-catch</th></tr>
+              <tr><td style="padding:3px">Para qué sirve</td><td style="padding:3px">Comprobar invariantes internas del programa (errores DE programación)</td><td style="padding:3px">Gestionar errores esperables en runtime (entrada de usuario, división por cero...)</td></tr>
+              <tr><td style="padding:3px">¿Se puede capturar y continuar?</td><td style="padding:3px">NO — detiene el programa</td><td style="padding:3px">SÍ — el catch permite seguir ejecutando</td></tr>
+              <tr><td style="padding:3px">¿Se usa para validar datos de usuario?</td><td style="padding:3px">NO — nunca uses assert para eso</td><td style="padding:3px">SÍ — es justo su propósito</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">⚠ assert está desactivado por defecto en Java</span></td>
+          <td class="method-desc">
+            Para que las aserciones funcionen, hay que activarlas con el flag <code>-ea</code> al ejecutar. Sin esa opción, Java IGNORA todos los <code>assert</code> como si no existieran — el código compila y corre, pero la comprobación nunca se ejecuta.
+            <span class="example">java -ea Main  // con aserciones activadas
+java Main      // sin -ea, los assert se ignoran completamente</span>
+            <div class="returns">💡 Para examen: si el enunciado pide explícitamente "usa aserciones", escríbelas igualmente — el profesor revisará el código fuente, no necesariamente la ejecución con -ea activado.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Excepciones · RA3 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
@@ -1235,6 +1584,56 @@ for (Mascota m : animales) {
     }
 }
 if (!encontrado) System.out.println("No encontrado");</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">⚠ Iterator — RA6, contenido oficial del currículum</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Concepto</th><th>Explicación · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Qué es y para qué sirve</span></td>
+          <td class="method-desc">
+            Un <code>Iterator</code> es un objeto que recorre una colección manualmente, posición a posición. El for-each por dentro ya usa un Iterator automáticamente — pero usar el Iterator de forma EXPLÍCITA es necesario cuando quieres <strong>eliminar elementos mientras recorres</strong> sin que salte <code>ConcurrentModificationException</code>.
+            <strong>Import:</strong> <code>import java.util.Iterator;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Method Summary</span></td>
+          <td class="method-desc">
+            <span class="example">Iterator&lt;Mascota&gt; it = animales.iterator();
+
+while (it.hasNext()) {    // ¿queda algún elemento?
+    Mascota m = it.next(); // obtiene el siguiente Y avanza
+    if (m.getNombre().equals("Toby")) {
+        it.remove();       // ✅ elimina de forma SEGURA durante el recorrido
+    }
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">⚠ Diferencia clave con el patrón "break" que ya conoces</span></td>
+          <td class="method-desc">
+            Hasta ahora, para eliminar dentro de un for-each usabas <code>break</code> justo después de eliminar — válido solo si eliminas UN elemento y sales inmediatamente. Si necesitas eliminar VARIOS elementos en el mismo recorrido (ej. "elimina todos los mayores de 65 años"), <code>break</code> no sirve — ahí SÍ necesitas <code>Iterator</code>.
+            <span class="example">// ❌ for-each con break solo elimina UNO y sale:
+for (Mascota m : animales) {
+    if (m.getEdad() &gt; 10) {
+        animales.remove(m);
+        break; // solo elimina el primero que encuentra, no todos
+    }
+}
+
+// ✅ Iterator elimina TODOS los que cumplan, en el mismo recorrido:
+Iterator&lt;Mascota&gt; it = animales.iterator();
+while (it.hasNext()) {
+    Mascota m = it.next();
+    if (m.getEdad() &gt; 10) {
+        it.remove(); // elimina y sigue recorriendo, sin romper nada
+    }
+}</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -1719,6 +2118,76 @@ v[v.length - 1] = nuevoValor;</span></td>
       </tbody>
     </table>
   </div>
+  <div class="section-title">⚠ Matrices (arrays multidimensionales) — RA6, contenido oficial del currículum</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Operación</th><th>Sintaxis · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Declarar e inicializar una matriz</span></td>
+          <td class="method-desc">
+            Una matriz es un "array de arrays" — necesitas DOS corchetes.
+            <span class="example">int[][] matriz = new int[3][4];  // 3 filas, 4 columnas, todo a 0
+
+// Con valores directos:
+int[][] m2 = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Tamaño: filas = matriz.length, columnas = matriz[0].length
+int filas = matriz.length;
+int columnas = matriz[0].length;</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Acceder y modificar</span></td>
+          <td class="method-desc">
+            Necesitas DOS índices — fila y columna.
+            <span class="example">matriz[0][0] = 1;   // fila 0, columna 0
+matriz[2][3] = 99;  // fila 2, columna 3
+int valor = matriz[1][2];  // leer fila 1, columna 2</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">⚠ Recorrer una matriz — SIEMPRE dos for anidados</span></td>
+          <td class="method-desc">
+            Esto es el caso típico donde NO sirve un for-each — necesitas controlar fila Y columna a la vez con dos variables distintas.
+            <span class="example">for (int i = 0; i &lt; matriz.length; i++) {       // i = recorre FILAS
+    for (int j = 0; j &lt; matriz[i].length; j++) { // j = recorre COLUMNAS
+        System.out.print(matriz[i][j] + " ");
+    }
+    System.out.println();  // salto de línea al terminar cada fila
+}</span>
+            <div class="returns">💡 <code>matriz[i].length</code> en vez de <code>matriz[0].length</code> dentro del bucle es más seguro — soporta filas de distinto tamaño (matrices "dentadas"), aunque en el examen normalmente todas las filas miden igual.</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Caso real — mapa de calor / tablero</span></td>
+          <td class="method-desc">
+            <span class="example">// Sumar todos los valores de una matriz:
+int suma = 0;
+for (int i = 0; i &lt; matriz.length; i++) {
+    for (int j = 0; j &lt; matriz[i].length; j++) {
+        suma += matriz[i][j];
+    }
+}
+
+// Buscar el valor máximo:
+int max = matriz[0][0];
+for (int i = 0; i &lt; matriz.length; i++) {
+    for (int j = 0; j &lt; matriz[i].length; j++) {
+        if (matriz[i][j] &gt; max) {
+            max = matriz[i][j];
+        }
+    }
+}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">Arrays · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
@@ -1749,7 +2218,170 @@ v[v.length - 1] = nuevoValor;</span></td>
       </tbody>
     </table>
   </div>
+  <div class="section-title">toCharArray() — caso real: validar palíndromos</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Por qué hace falta</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Un String no se puede recorrer directamente con for-each</span></td>
+          <td class="method-desc">
+            A diferencia de un ArrayList, un String no es una "colección" en el sentido de Java — necesitas convertirlo primero a <code>char[]</code> para poder usar un <code>for-each</code> sobre sus caracteres.
+            <span class="example">char[] letras = "Hola".toCharArray();
+for (char c : letras) {
+    System.out.println(c);
+}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Caso real de examen — comprobar si una palabra es palíndromo</span></td>
+          <td class="method-desc">
+            Una palabra es palíndromo si se lee igual del derecho que del revés (ej. "ana", "reconocer").
+            <span class="example">public static boolean esPalindromo(String palabra) {
+    char[] letras = palabra.toCharArray();
+    int inicio = 0;
+    int fin = letras.length - 1;
+
+    while (inicio &lt; fin) {
+        if (letras[inicio] != letras[fin]) {
+            return false;  // encontró una diferencia, no es palíndromo
+        }
+        inicio++;
+        fin--;
+    }
+    return true;  // recorrió todo sin diferencias
+}
+// esPalindromo("ana")     → true
+// esPalindromo("hola")    → false</span>
+            <div class="returns">💡 Patrón típico: dos índices que avanzan desde los extremos hacia el centro, comparando posiciones simétricas — muy usado también con arrays normales, no solo Strings.</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Caso real — invertir un String</span></td>
+          <td class="method-desc">
+            <span class="example">public static String invertir(String s) {
+    char[] letras = s.toCharArray();
+    String resultado = "";
+    for (int i = letras.length - 1; i &gt;= 0; i--) {
+        resultado += letras[i];
+    }
+    return resultado;
+}
+// invertir("Hola") → "aloH"
+
+// Alternativa más simple, sin toCharArray, usando StringBuilder:
+public static String invertir2(String s) {
+    return new StringBuilder(s).reverse().toString();
+}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">StringBuilder — concatenar en bucles</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Por qué usarlo</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">String normal en un bucle es ineficiente</span></td>
+          <td class="method-desc">
+            Cada <code>+=</code> sobre un String crea un objeto nuevo en memoria. Para concatenaciones largas en bucle, <code>StringBuilder</code> es más eficiente y es lo esperado en examen si hay muchas iteraciones.
+            <span class="example">// Funciona pero es menos eficiente:
+String resultado = "";
+for (int i = 0; i &lt; 1000; i++) {
+    resultado += i + ",";
+}
+
+// Forma recomendada con StringBuilder:
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i &lt; 1000; i++) {
+    sb.append(i).append(",");
+}
+String resultado = sb.toString();  // convierte de vuelta a String al final</span>
+            <div class="returns">💡 Para el examen: con bucles cortos (pocas vueltas), el String normal con <code>+=</code> es perfectamente aceptable y más simple de escribir bajo presión.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="page-footer">java.lang.String · Java SE 8 · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
+<!-- ══ COMPARABLE / COMPARATOR ══ -->
+<div id="page-comparable" class="page">
+  <div class="class-header"><div class="package-name">java.lang / java.util — RA7</div>Comparable y Comparator — ordenar objetos propios</div>
+  <div class="class-description">
+    Cuando tienes una clase tuya (ej. <code>Persona</code>) y quieres poder ordenarla con <code>Collections.sort()</code> o <code>Arrays.sort()</code>, Java necesita saber CÓMO comparar dos objetos de esa clase — para eso existen estas dos interfaces.
+  </div>
+  <div class="section-title">Comparable — orden natural, dentro de la propia clase</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Patrón</th><th>Sintaxis · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">implements Comparable&lt;T&gt;</span></td>
+          <td class="method-desc">
+            La propia clase implementa cómo se compara consigo misma — define el "orden natural".
+            <span class="example">public class Persona implements Comparable&lt;Persona&gt; {
+    private int edad;
+
+    @Override
+    public int compareTo(Persona otra) {
+        return this.edad - otra.edad;
+        // negativo si this es menor, 0 si igual, positivo si this es mayor
+    }
+}
+
+// Ahora se puede ordenar directamente:
+ArrayList&lt;Persona&gt; personas = new ArrayList&lt;&gt;();
+Collections.sort(personas);  // usa compareTo() automáticamente</span>
+            <div class="returns">Regla del valor de retorno: negativo = "this va antes", 0 = "iguales", positivo = "this va después".</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Comparator — orden externo, alternativo</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Patrón</th><th>Sintaxis · Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">Comparator separado de la clase</span></td>
+          <td class="method-desc">
+            Útil cuando quieres varios criterios de orden distintos, sin modificar la clase original.
+            <span class="example">// Ordenar por nombre en vez de por edad, sin tocar Persona:
+Collections.sort(personas, new Comparator&lt;Persona&gt;() {
+    @Override
+    public int compare(Persona p1, Persona p2) {
+        return p1.getNombre().compareTo(p2.getNombre());
+    }
+});
+
+// Versión más corta con lambda (Java 8):
+Collections.sort(personas, (p1, p2) -&gt; p1.getNombre().compareTo(p2.getNombre()));</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Comparar dos Strings directamente</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Método</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">compareTo(String s)</span></td>
+          <td class="method-desc">Ya viene implementado en String — compara alfabéticamente.
+          <span class="example">"ana".compareTo("bea")  // negativo, "ana" va antes
+"bea".compareTo("ana")  // positivo, "bea" va después
+"ana".compareTo("ana")  // 0, iguales</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">Comparable / Comparator · RA7 · Guía de examen DAM1 IES Venancio Blanco</div>
 </div>
 
 <!-- ══ MATH ══ -->
@@ -1953,6 +2585,150 @@ String regex = "[a-zA-Z0-9._%+-]+@gmail\\.com";
 </div>
 
 <!-- ══ ERRORES FRECUENTES ══ -->
+<!-- ══ GUÍA DE DECISIÓN ══ -->
+<div id="page-decision" class="page">
+  <div class="class-header"><div class="package-name">Para el examen — consulta rápida</div>¿Abstracta, Interfaz, o Genérico? — Guía de 10 segundos</div>
+  <div class="class-description">
+    Cuando leas el enunciado y no sepas qué herramienta usar, busca estas palabras clave. Es la decisión más importante de diseño en cualquier ejercicio de RA7/RA6.
+  </div>
+  <div class="section-title">Tabla de decisión única</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>El enunciado dice (o sugiere)...</th><th>Usa</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>"Todas las clases comparten estos atributos/datos"</td>
+          <td><span class="method-sig">Clase abstracta</span></td>
+          <td class="method-desc">Hay código y datos REALES que se repiten — se centralizan una vez, arriba</td>
+        </tr>
+        <tr>
+          <td>"Cada tipo lo hace de forma distinta" + comparten estructura</td>
+          <td><span class="method-sig">Método abstracto dentro de clase abstracta</span></td>
+          <td class="method-desc">Obliga a implementar, pero dentro de una jerarquía con código común</td>
+        </tr>
+        <tr>
+          <td>"Algunas clases (no relacionadas entre sí) pueden hacer X"</td>
+          <td><span class="method-sig">Interfaz</span></td>
+          <td class="method-desc">Es una CAPACIDAD transversal, no depende de la jerarquía de tipos</td>
+        </tr>
+        <tr>
+          <td>"X no tiene nada en común con Y, pero ambas pueden Z"</td>
+          <td><span class="method-sig">Interfaz</span></td>
+          <td class="method-desc">Ej: Ropa y Electronica no comparten herencia, pero ambas pueden tener Descuento</td>
+        </tr>
+        <tr>
+          <td>"Estructura reutilizable para cualquier tipo de dato"</td>
+          <td><span class="method-sig">Genérico &lt;T&gt;</span></td>
+          <td class="method-desc">No importa el tipo, la lógica interna es siempre la misma (Caja, Pila, Repositorio)</td>
+        </tr>
+        <tr>
+          <td>"Sin crear una clase distinta para cada tipo"</td>
+          <td><span class="method-sig">Genérico &lt;T&gt;</span></td>
+          <td class="method-desc">Frase casi literal que usan los enunciados para pedir genéricos</td>
+        </tr>
+        <tr>
+          <td>"En el futuro podría añadirse un tipo que NO hace X" (mencionado como advertencia)</td>
+          <td><span class="method-sig">Método CON CUERPO en abstracta (no abstracto)</span></td>
+          <td class="method-desc">El comportamiento por defecto se hereda; solo se sobrescribe si una subclase futura lo necesita distinto</td>
+        </tr>
+        <tr>
+          <td>Combinación: interfaz + jerarquía con código compartido</td>
+          <td><span class="method-sig">Abstracta implements Interfaz</span></td>
+          <td class="method-desc">La abstracta da estructura común Y cumple el contrato de la interfaz (ej. Ecuacion implements EcuacionResoluble)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Combinaciones reales que ya has resuelto esta semana</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Ejercicio</th><th>Combinación usada</th></tr></thead>
+      <tbody>
+        <tr><td>Mascota → Perro/Gato/Aves → Loro/Canario</td><td class="method-desc">Solo abstracta, dos niveles — todo comparte atributos reales</td></tr>
+        <tr><td>Ecuacion (abstracta) implements EcuacionResoluble</td><td class="method-desc">Abstracta + interfaz — datos compartidos Y contrato de comportamiento</td></tr>
+        <tr><td>Ropa/Electronica implements Descuento, LibroEscolar no</td><td class="method-desc">Interfaz pura — sin relación de herencia entre las tres clases</td></tr>
+        <tr><td>Repositorio&lt;T&gt;, Pila&lt;T&gt;, Caja&lt;T&gt;</td><td class="method-desc">Genérico puro — sin herencia, sin interfaz, solo reutilización de estructura</td></tr>
+        <tr><td>Vehiculo (abstracta) implements Trazable</td><td class="method-desc">Abstracta + interfaz, igual que Ecuacion</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">Guía de decisión rápida · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
+<!-- ══ CÓMO USAR LA API REAL ══ -->
+<div id="page-apireal" class="page">
+  <div class="class-header"><div class="package-name">Para el examen</div>Cómo usar la API oficial de Java 8 en 5 pasos</div>
+  <div class="class-description">
+    En el examen solo tendrás <code>https://docs.oracle.com/javase/8/docs/api/</code> — sin este HTML. Esta página explica cómo navegar la API real cuando no recuerdes un método exacto.
+  </div>
+  <div class="section-title">Pasos para encontrar lo que necesitas</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Paso</th><th>Qué hacer</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">1. Busca la clase, no el método</span></td>
+          <td class="method-desc">
+            Si necesitas algo de listas, busca primero <code>ArrayList</code>. Si es de fechas, busca <code>LocalDate</code>. En el frame de la izquierda (lista alfabética "All Classes") usa Ctrl+F y escribe el nombre.
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">2. Ve directo a "Method Summary"</span></td>
+          <td class="method-desc">
+            Cada página de clase tiene arriba: descripción general, luego "Field Summary", "Constructor Summary", y lo más útil: <strong>"Method Summary"</strong> — una tabla con todos los métodos, su firma y una frase de qué hacen. Ignora el resto al principio.
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">3. Lee la firma, no la prosa</span></td>
+          <td class="method-desc">
+            <span class="example">boolean add(E e)
+// boolean = lo que devuelve
+// add = nombre del método
+// (E e) = recibe UN parámetro de tipo E (el genérico de esa clase)</span>
+            La frase descriptiva en inglés es secundaria — la firma ya te dice casi todo lo que necesitas para usarlo.
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">4. Ctrl+F dentro de la página para buscar un método conocido</span></td>
+          <td class="method-desc">
+            Si ya sabes que el método se llama parecido a "parse" o "format", usa Ctrl+F directamente en la página de la clase en vez de leer toda la tabla.
+          </td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">5. Si no recuerdas la clase, prueba con el paquete</span></td>
+          <td class="method-desc">
+            <code>java.util</code> → colecciones (ArrayList, HashMap, HashSet, Scanner, Random)<br>
+            <code>java.lang</code> → básicos, no necesitan import (String, Math, Integer)<br>
+            <code>java.time</code> → fechas (LocalDate, Period)<br>
+            <code>java.util.regex</code> → expresiones regulares (Pattern, Matcher)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-title">Estrategia si el tiempo aprieta</div>
+  <div class="section-content">
+    <table class="method-table">
+      <thead><tr><th>Situación</th><th>Qué hacer</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="method-sig">No encuentras el método exacto</span></td>
+          <td class="method-desc">Usa el bucle <code>for</code> manual en vez del método de la librería — casi todo lo que hace una librería se puede reescribir con un bucle simple. No te bloquees buscando indefinidamente.</td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">No recuerdas la firma exacta</span></td>
+          <td class="method-desc">Escribe tu mejor intento y sigue — un error de sintaxis menor en examen pesa menos que dejar el ejercicio sin terminar.</td>
+        </tr>
+        <tr>
+          <td><span class="method-sig">Métodos que NO necesitas buscar — ya los sabes de memoria</span></td>
+          <td class="method-desc"><code>add, remove, get, size, isEmpty, contains</code> (ArrayList) · <code>put, get, containsKey, keySet, values</code> (HashMap) · <code>equals, length, split, trim, toUpperCase</code> (String) · <code>parseInt, parseDouble</code> (Integer/Double) · <code>random, round, sqrt, pow, abs</code> (Math)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">Guía de uso de la API real · Guía de examen DAM1 IES Venancio Blanco</div>
+</div>
+
 <div id="page-errores" class="page">
   <div class="class-header"><div class="package-name">Referencia rápida</div>Errores más comunes en examen</div>
   <div class="class-description">Los errores que han aparecido durante la preparación — para no repetirlos.</div>
